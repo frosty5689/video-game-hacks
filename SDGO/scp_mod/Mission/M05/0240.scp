@@ -1,0 +1,32 @@
+MM005_Npc20Turret001_Update = function(npc)
+   g_NpcAI_MM005_20TURRET001_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_MM005_20TURRET001_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_MM005_20TURRET001_Step, npc, t_nStep)
+   return true
+end
+
+MM005_Npc20Turret001_LuaInit = function()
+   _ACT_MM005_20TURRET001_INITIALZATION = 0
+   g_NpcAI_MM005_20TURRET001_Step = {}
+   g_NpcAI_MM005_20TURRET001_Step.Init = {}
+   g_NpcAI_MM005_20TURRET001_Step.Update = {}
+   g_NpcAI_MM005_20TURRET001_Step.Release = {}
+   g_NpcAI_MM005_20TURRET001_Step.Init[_ACT_MM005_20TURRET001_INITIALZATION] = AIStep_MM005_20TURRET001_Init_Init
+   g_NpcAI_MM005_20TURRET001_Step.Update[_ACT_MM005_20TURRET001_INITIALZATION] = AIStep_MM005_20TURRET001_Init_Update
+   g_NpcAI_MM005_20TURRET001_Step.Release[_ACT_MM005_20TURRET001_INITIALZATION] = AIStep_MM005_20TURRET001_Init_Release
+   return 1
+end
+
+AIStep_MM005_20TURRET001_Init_Init = function(npc)
+end
+
+AIStep_MM005_20TURRET001_Init_Update = function(npc)
+			npc:SetRoadSearchType(0)
+		npc:ReMoveObject()
+end
+
+AIStep_MM005_20TURRET001_Init_Release = function(npc)
+end

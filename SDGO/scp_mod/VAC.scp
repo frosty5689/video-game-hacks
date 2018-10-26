@@ -1,0 +1,907 @@
+VAC001_SmallMob_Update = function(npc)
+   g_NpcAI_VAC001_SmallMob_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_VAC001_SmallMob_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_VAC001_SmallMob_Step, npc, t_nStep)
+   return true
+end
+
+VAC001_SmallMob_LuaInit = function()
+   _ACT_VAC001_SmallMob_INITIALZATION = 0
+   _ACT_VAC001_SmallMob_NONE = 1
+   g_NpcAI_VAC001_SmallMob_Step = {}
+   g_NpcAI_VAC001_SmallMob_Step.Init = {}
+   g_NpcAI_VAC001_SmallMob_Step.Update = {}
+   g_NpcAI_VAC001_SmallMob_Step.Release = {}
+   g_NpcAI_VAC001_SmallMob_Step.Init[_ACT_VAC001_SmallMob_INITIALZATION] = AIStep_VAC001_SmallMob_Init_Init
+   g_NpcAI_VAC001_SmallMob_Step.Update[_ACT_VAC001_SmallMob_INITIALZATION] = AIStep_VAC001_SmallMob_Init_Update
+   g_NpcAI_VAC001_SmallMob_Step.Release[_ACT_VAC001_SmallMob_INITIALZATION] = AIStep_VAC001_SmallMob_Init_Release
+   g_NpcAI_VAC001_SmallMob_Step.Init[_ACT_VAC001_SmallMob_NONE] = AIStep_VAC001_SmallMob_None_Init
+   g_NpcAI_VAC001_SmallMob_Step.Update[_ACT_VAC001_SmallMob_NONE] = AIStep_VAC001_SmallMob_None_Update
+   g_NpcAI_VAC001_SmallMob_Step.Release[_ACT_VAC001_SmallMob_NONE] = AIStep_VAC001_SmallMob_None_Release
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   return 1
+end
+
+AIStep_VAC001_SmallMob_Init_Init = function(npc)
+                     npc:SetNowPos(vector3(t_vacpos1.x+(math.random(X_SM_Range1,X_SM_Range2)),Y_SM_Cord,t_vacpos1.z+(math.random(Z_SM_Range1,Z_SM_Range2))))
+end
+
+AIStep_VAC001_SmallMob_Init_Update = function(npc)
+   ChangeNpcAI_VAC001_SmallMob_Step(npc, _ACT_VAC001_SmallMob_NONE)
+end
+
+AIStep_VAC001_SmallMob_Init_Release = function(npc)
+end
+
+
+AIStep_VAC001_SmallMob_None_Init = function(npc)
+   npc:SetAttackOnOff(false)
+   npc:SetAttackEndFlg(false)
+   npc:GetCommanderID()
+   npc:ClearActEvent()
+end
+
+AIStep_VAC001_SmallMob_None_Update = function(npc)
+   -- if npc:GetAttackTarget() == 0 then
+      --SearchLockPlayer(npc:GetID())
+	  --npc:SetAttackTarget(GetPlayer(1):GetID())
+   -- else
+      -- if CheckObejctAlive(npc:GetAttackTarget()) == false then
+         --SearchLockPlayer(npc:GetID())
+		 --npc:SetAttackTarget(GetPlayer(1):GetID())
+		 -- npc:SetNowPos(t_vacpos1)
+      -- end
+   -- end
+   
+pcall(GAF_Skill_Buff)
+   -- if npc:GetAttackTarget() ~= 0 then
+			   if false == CheckArrvial_Not_Y(npc:GetID(), t_vacpos1, Range_Tolerance) then
+			         --local a = t_vacpos1
+					--a.x = a.x+(math.random(-100,100))
+					--a.z = a.z+(math.random(350,400))
+					if t_vacpos1 ~= nil then
+                     npc:SetNowPos(vector3(t_vacpos1.x+(math.random(X_SM_Range1,X_SM_Range2)),Y_SM_Cord,t_vacpos1.z+(math.random(Z_SM_Range1,Z_SM_Range2))))
+					end
+			   end
+               --npc:SetMoveTargetPos(t_vacpos1)
+			   --ChangeNpcAI_VAC001_SmallMob_Step(npc, _ACT_VAC001_SmallMob_MOVE)
+      -- end
+end
+
+AIStep_VAC001_SmallMob_None_Release = function(npc)
+end
+
+VAC002_BigMob_Update = function(npc)
+   g_NpcAI_VAC002_BigMob_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_VAC002_BigMob_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_VAC002_BigMob_Step, npc, t_nStep)
+   return true
+end
+
+VAC002_BigMob_LuaInit = function()
+   _ACT_VAC002_BigMob_INITIALZATION = 0
+   _ACT_VAC002_BigMob_MOVE = 1
+   _ACT_VAC002_BigMob_NONE = 2
+   g_NpcAI_VAC002_BigMob_Step = {}
+   g_NpcAI_VAC002_BigMob_Step.Init = {}
+   g_NpcAI_VAC002_BigMob_Step.Update = {}
+   g_NpcAI_VAC002_BigMob_Step.Release = {}
+   g_NpcAI_VAC002_BigMob_Step.Init[_ACT_VAC002_BigMob_INITIALZATION] = AIStep_VAC002_BigMob_Init_Init
+   g_NpcAI_VAC002_BigMob_Step.Update[_ACT_VAC002_BigMob_INITIALZATION] = AIStep_VAC002_BigMob_Init_Update
+   g_NpcAI_VAC002_BigMob_Step.Release[_ACT_VAC002_BigMob_INITIALZATION] = AIStep_VAC002_BigMob_Init_Release
+   g_NpcAI_VAC002_BigMob_Step.Init[_ACT_VAC002_BigMob_NONE] = AIStep_VAC002_BigMob_None_Init
+   g_NpcAI_VAC002_BigMob_Step.Update[_ACT_VAC002_BigMob_NONE] = AIStep_VAC002_BigMob_None_Update
+   g_NpcAI_VAC002_BigMob_Step.Release[_ACT_VAC002_BigMob_NONE] = AIStep_VAC002_BigMob_None_Release
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   return 1
+end
+
+AIStep_VAC002_BigMob_Init_Init = function(npc)
+npc:SetNowPos(vector3(t_vacpos1.x+(math.random(X_BM_Range1,X_BM_Range2)),math.random(Y_BM_Range1,Y_BM_Range2),t_vacpos1.z+(math.random(Z_BM_Range1,Z_BM_Range2))))
+end
+
+AIStep_VAC002_BigMob_Init_Update = function(npc)
+   ChangeNpcAI_VAC002_BigMob_Step(npc, _ACT_VAC002_BigMob_NONE)
+end
+
+AIStep_VAC002_BigMob_Init_Release = function(npc)
+end
+
+
+
+AIStep_VAC002_BigMob_None_Init = function(npc)
+   npc:SetAttackOnOff(false)
+   npc:SetAttackEndFlg(false)
+   npc:GetCommanderID()
+   npc:ClearActEvent()
+end
+
+AIStep_VAC002_BigMob_None_Update = function(npc)
+pcall(GAF_Skill_Buff)
+			   if false == CheckArrvial_Not_Y(npc:GetID(), t_vacpos1, Range_Tolerance) then
+
+					if t_vacpos1 ~= nil then
+
+					npc:SetNowPos(vector3(t_vacpos1.x+(math.random(X_BM_Range1,X_BM_Range2)),math.random(Y_BM_Range1,Y_BM_Range2),t_vacpos1.z+(math.random(Z_BM_Range1,Z_BM_Range2))))
+					end
+
+   
+			   end
+end
+
+AIStep_VAC002_BigMob_None_Release = function(npc)
+end
+
+VAC003_MediumMob_Update = function(npc)
+   g_NpcAI_VAC003_MediumMob_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_VAC003_MediumMob_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_VAC003_MediumMob_Step, npc, t_nStep)
+   return true
+end
+
+VAC003_MediumMob_LuaInit = function()
+   _ACT_VAC003_MediumMob_INITIALZATION = 0
+   _ACT_VAC003_MediumMob_NONE = 1
+   g_NpcAI_VAC003_MediumMob_Step = {}
+   g_NpcAI_VAC003_MediumMob_Step.Init = {}
+   g_NpcAI_VAC003_MediumMob_Step.Update = {}
+   g_NpcAI_VAC003_MediumMob_Step.Release = {}
+   g_NpcAI_VAC003_MediumMob_Step.Init[_ACT_VAC003_MediumMob_INITIALZATION] = AIStep_VAC003_MediumMob_Init_Init
+   g_NpcAI_VAC003_MediumMob_Step.Update[_ACT_VAC003_MediumMob_INITIALZATION] = AIStep_VAC003_MediumMob_Init_Update
+   g_NpcAI_VAC003_MediumMob_Step.Release[_ACT_VAC003_MediumMob_INITIALZATION] = AIStep_VAC003_MediumMob_Init_Release
+   g_NpcAI_VAC003_MediumMob_Step.Init[_ACT_VAC003_MediumMob_NONE] = AIStep_VAC003_MediumMob_None_Init
+   g_NpcAI_VAC003_MediumMob_Step.Update[_ACT_VAC003_MediumMob_NONE] = AIStep_VAC003_MediumMob_None_Update
+   g_NpcAI_VAC003_MediumMob_Step.Release[_ACT_VAC003_MediumMob_NONE] = AIStep_VAC003_MediumMob_None_Release
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   return 1
+end
+
+AIStep_VAC003_MediumMob_Init_Init = function(npc)
+                     npc:SetNowPos(vector3(t_vacpos1.x+(math.random(X_MM_Range1,X_MM_Range2)),Y_MM_Cord,t_vacpos1.z+(math.random(Z_MM_Range1,Z_MM_Range2))))
+end
+
+AIStep_VAC003_MediumMob_Init_Update = function(npc)
+   ChangeNpcAI_VAC003_MediumMob_Step(npc, _ACT_VAC003_MediumMob_NONE)
+end
+
+AIStep_VAC003_MediumMob_Init_Release = function(npc)
+end
+
+
+AIStep_VAC003_MediumMob_None_Init = function(npc)
+   npc:SetAttackOnOff(false)
+   npc:SetAttackEndFlg(false)
+   npc:GetCommanderID()
+   npc:ClearActEvent()
+end
+
+AIStep_VAC003_MediumMob_None_Update = function(npc)
+   -- if npc:GetAttackTarget() == 0 then
+      --SearchLockPlayer(npc:GetID())
+	  --npc:SetAttackTarget(GetPlayer(1):GetID())
+   -- else
+      -- if CheckObejctAlive(npc:GetAttackTarget()) == false then
+         --SearchLockPlayer(npc:GetID())
+		 --npc:SetAttackTarget(GetPlayer(1):GetID())
+		 -- npc:SetNowPos(t_vacpos1)
+      -- end
+   -- end
+pcall(GAF_Skill_Buff)
+   -- if npc:GetAttackTarget() ~= 0 then
+			   if false == CheckArrvial_Not_Y(npc:GetID(), t_vacpos1, Range_Tolerance) then
+			         --local a = t_vacpos1
+					--a.x = a.x+(math.random(-100,100))
+					--a.z = a.z+(math.random(350,400))
+					if t_vacpos1 ~= nil then
+                     npc:SetNowPos(vector3(t_vacpos1.x+(math.random(X_MM_Range1,X_MM_Range2)),Y_MM_Cord,t_vacpos1.z+(math.random(Z_MM_Range1,Z_MM_Range2))))
+					end
+			   end
+               --npc:SetMoveTargetPos(t_vacpos1)
+			   --ChangeNpcAI_VAC003_MediumMob_Step(npc, _ACT_VAC003_MediumMob_MOVE)
+      -- end
+end
+
+AIStep_VAC003_MediumMob_None_Release = function(npc)
+end
+
+VAC004_UselessMob_Update = function(npc)
+   g_NpcAI_VAC004_UselessMob_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_VAC004_UselessMob_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_VAC004_UselessMob_Step, npc, t_nStep)
+   return true
+end
+
+VAC004_UselessMob_LuaInit = function()
+   _ACT_VAC004_UselessMob_INITIALZATION = 0
+   _ACT_VAC004_UselessMob_NONE = 1
+   g_NpcAI_VAC004_UselessMob_Step = {}
+   g_NpcAI_VAC004_UselessMob_Step.Init = {}
+   g_NpcAI_VAC004_UselessMob_Step.Update = {}
+   g_NpcAI_VAC004_UselessMob_Step.Release = {}
+   g_NpcAI_VAC004_UselessMob_Step.Init[_ACT_VAC004_UselessMob_INITIALZATION] = AIStep_VAC004_UselessMob_Init_Init
+   g_NpcAI_VAC004_UselessMob_Step.Update[_ACT_VAC004_UselessMob_INITIALZATION] = AIStep_VAC004_UselessMob_Init_Update
+   g_NpcAI_VAC004_UselessMob_Step.Release[_ACT_VAC004_UselessMob_INITIALZATION] = AIStep_VAC004_UselessMob_Init_Release
+   g_NpcAI_VAC004_UselessMob_Step.Init[_ACT_VAC004_UselessMob_NONE] = AIStep_VAC004_UselessMob_None_Init
+   g_NpcAI_VAC004_UselessMob_Step.Update[_ACT_VAC004_UselessMob_NONE] = AIStep_VAC004_UselessMob_None_Update
+   g_NpcAI_VAC004_UselessMob_Step.Release[_ACT_VAC004_UselessMob_NONE] = AIStep_VAC004_UselessMob_None_Release
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   return 1
+end
+
+AIStep_VAC004_UselessMob_Init_Init = function(npc)
+end
+
+AIStep_VAC004_UselessMob_Init_Update = function(npc)
+   ChangeNpcAI_VAC004_UselessMob_Step(npc, _ACT_VAC004_UselessMob_NONE)
+end
+
+AIStep_VAC004_UselessMob_Init_Release = function(npc)
+end
+
+AIStep_VAC004_UselessMob_None_Init = function(npc)
+   npc:SetAttackOnOff(false)
+   npc:SetAttackEndFlg(false)
+   npc:GetCommanderID()
+   npc:ClearActEvent()
+end
+
+AIStep_VAC004_UselessMob_None_Update = function(npc)
+pcall(GAF_Skill_Buff)
+   if t_vacpos1 ~= nil then
+	npc:SetNowPos(vector3(t_vacpos1.x+(math.random(X_UM_Range1,X_UM_Range2)),t_vacpos1,t_vacpos1.z+(math.random(Z_UM_Range1,Z_UM_Range2))))
+	end
+end
+
+AIStep_VAC004_UselessMob_None_Release = function(npc)
+end
+
+VAC005_Boss_Update = function(npc)
+   g_NpcAI_VAC005_Boss_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_VAC005_Boss_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_VAC005_Boss_Step, npc, t_nStep)
+   return true
+end
+
+VAC005_Boss_LuaInit = function()
+   _ACT_VAC005_Boss_INITIALZATION = 0
+   _ACT_VAC005_Boss_NONE = 1
+   g_NpcAI_VAC005_Boss_Step = {}
+   g_NpcAI_VAC005_Boss_Step.Init = {}
+   g_NpcAI_VAC005_Boss_Step.Update = {}
+   g_NpcAI_VAC005_Boss_Step.Release = {}
+   g_NpcAI_VAC005_Boss_Step.Init[_ACT_VAC005_Boss_INITIALZATION] = AIStep_VAC005_Boss_Init_Init
+   g_NpcAI_VAC005_Boss_Step.Update[_ACT_VAC005_Boss_INITIALZATION] = AIStep_VAC005_Boss_Init_Update
+   g_NpcAI_VAC005_Boss_Step.Release[_ACT_VAC005_Boss_INITIALZATION] = AIStep_VAC005_Boss_Init_Release
+   g_NpcAI_VAC005_Boss_Step.Init[_ACT_VAC005_Boss_NONE] = AIStep_VAC005_Boss_None_Init
+   g_NpcAI_VAC005_Boss_Step.Update[_ACT_VAC005_Boss_NONE] = AIStep_VAC005_Boss_None_Update
+   g_NpcAI_VAC005_Boss_Step.Release[_ACT_VAC005_Boss_NONE] = AIStep_VAC005_Boss_None_Release
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   return 1
+end
+
+AIStep_VAC005_Boss_Init_Init = function(npc)
+ npc:SetNowPos(vector3(t_vacpos1.x+(math.random(X_Boss_Range1,X_Boss_Range2)),Y_Boss_Cord,t_vacpos1.z+(math.random(Z_Boss_Range1,Z_Boss_Range2))))
+end
+
+AIStep_VAC005_Boss_Init_Update = function(npc)
+   ChangeNpcAI_VAC005_Boss_Step(npc, _ACT_VAC005_Boss_NONE)
+end
+
+AIStep_VAC005_Boss_Init_Release = function(npc)
+end
+
+
+AIStep_VAC005_Boss_None_Init = function(npc)
+   npc:SetAttackOnOff(false)
+   npc:SetAttackEndFlg(false)
+   npc:GetCommanderID()
+   npc:ClearActEvent()
+end
+
+AIStep_VAC005_Boss_None_Update = function(npc)
+	-- local taozi = 0
+	-- local sergei = 0
+	-- taozi = SearchNpc(3248616)
+	-- sergei = SearchNpc(3248617)
+	-- io.output(io.open("test.txt", "a"))
+  -- io.write("3248616 ", taozi,"\n")
+ -- io.write("3248617 ", sergei,"\n")
+   -- io.close()
+pcall(GAF_Skill_Buff)
+			   if false == CheckArrvial_Not_Y(npc:GetID(), t_vacpos1, Range_Tolerance) then
+			      -- local id1 = 0
+   -- local npcid = 0
+   -- sergei EX15
+   -- id1 = SearchNPC(3248617)
+   -- npcid = npc:GetID()
+   -- io.output(io.open("test.txt", "a"))
+	-- io.write(npc:GetID(), "\n")
+  -- io.close()
+
+					-- if npcid ~=  id1 then
+					if t_vacpos1 ~= nil then
+                     npc:SetNowPos(vector3(t_vacpos1.x+(math.random(X_Boss_Range1,X_Boss_Range2)),Y_Boss_Cord,t_vacpos1.z+(math.random(Z_Boss_Range1,Z_Boss_Range2))))
+					 end
+					 -- else
+					 -- npc:SetNowPos(vector3(t_vacpos1.x+(math.random(X_SM_Range1,X_SM_Range2)),Y_SM_Cord,t_vacpos1.z+(math.random(Z_SM_Range1,Z_SM_Range2))))
+			   -- end
+end
+end
+
+AIStep_VAC005_Boss_None_Release = function(npc)
+end
+
+
+
+
+BUFF_Npc001_Update = function(npc)
+   g_NpcAI_BUFF_Npc001_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_BUFF_Npc001_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_BUFF_Npc001_Step, npc, t_nStep)
+   return true
+end
+
+BUFF_Npc001_LuaInit = function()
+   _ACT_BUFF_Npc001_INITIALZATION = 0
+--   _ACT_BUFF_Npc001_MOVE = 1
+   _ACT_BUFF_Npc001_NONE = 1
+   g_NpcAI_BUFF_Npc001_Step = {}
+   g_NpcAI_BUFF_Npc001_Step.Init = {}
+   g_NpcAI_BUFF_Npc001_Step.Update = {}
+   g_NpcAI_BUFF_Npc001_Step.Release = {}
+   g_NpcAI_BUFF_Npc001_Step.Init[_ACT_BUFF_Npc001_INITIALZATION] = AIStep_BUFF_Npc001_Init_Init
+   g_NpcAI_BUFF_Npc001_Step.Update[_ACT_BUFF_Npc001_INITIALZATION] = AIStep_BUFF_Npc001_Init_Update
+   g_NpcAI_BUFF_Npc001_Step.Release[_ACT_BUFF_Npc001_INITIALZATION] = AIStep_BUFF_Npc001_Init_Release
+--   g_NpcAI_BUFF_Npc001_Step.Init[_ACT_BUFF_Npc001_MOVE] = AIStep_BUFF_Npc001_Move_Init
+--   g_NpcAI_BUFF_Npc001_Step.Update[_ACT_BUFF_Npc001_MOVE] = AIStep_BUFF_Npc001_Move_Update
+--   g_NpcAI_BUFF_Npc001_Step.Release[_ACT_BUFF_Npc001_MOVE] = AIStep_BUFF_Npc001_Move_Release
+   g_NpcAI_BUFF_Npc001_Step.Init[_ACT_BUFF_Npc001_NONE] = AIStep_BUFF_Npc001_None_Init
+   g_NpcAI_BUFF_Npc001_Step.Update[_ACT_BUFF_Npc001_NONE] = AIStep_BUFF_Npc001_None_Update
+   g_NpcAI_BUFF_Npc001_Step.Release[_ACT_BUFF_Npc001_NONE] = AIStep_BUFF_Npc001_None_Release
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   return 1
+end
+
+AIStep_BUFF_Npc001_Init_Init = function(npc)
+end
+
+AIStep_BUFF_Npc001_Init_Update = function(npc)
+   ChangeNpcAI_BUFF_Npc001_Step(npc, _ACT_BUFF_Npc001_NONE)
+end
+
+AIStep_BUFF_Npc001_Init_Release = function(npc)
+end
+
+
+
+AIStep_BUFF_Npc001_None_Init = function(npc)
+   --npc:SetAttackOnOff(false)
+   --npc:SetAttackEndFlg(false)
+   --npc:GetCommanderID()
+   --npc:ClearActEvent()
+end
+
+AIStep_BUFF_Npc001_None_Update = function(npc)
+
+	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+	GAF_Skill_Buff()
+
+end
+
+AIStep_BUFF_Npc001_None_Release = function(npc)
+end
+
+GAF_ChangePlayerAIStep = function(table, npc, t_nStep)
+  -- local t_OldStep = GetCurrentStep()
+  -- io.output(io.open("test.txt", "a"))
+-- io.write(Current_Step," cur\n")
+  --io.close()
+   table.Release[Current_Step](npc)
+   --local t_nChangeStep = ChangeCurrentStep(t_nStep)
+   Current_Step = t_nStep
+   -- io.write(Current_Step," next\n")
+  -- io.close()
+   table.Init[Current_Step](npc)
+   --local t_Str = string.format("%s %d %s  %d -> %d", "Npc", npc:GetID(), "\189\186\197\199 \195\188\192\206\193\246", t_OldStep, npc:GetLuaStep())
+   --print(t_Str)
+   return true
+end
+
+PLAYER_AI1_Update = function(npc)
+-- io.output(io.open("test.txt", "a"))
+ -- io.write(Current_Step," update\n")
+ -- io.close()
+   g_NpcAI_PLAYER_AI1_Step.Update[Current_Step](npc)
+   return 123
+end
+
+ChangeNpcAI_PLAYER_AI1_Step = function(npc, t_nStep)
+   GAF_ChangePlayerAIStep(g_NpcAI_PLAYER_AI1_Step, npc, t_nStep)
+   return true
+end
+
+PLAYER_AI1_LuaInit = function()
+   _ACT_PLAYER_AI1_INITIALZATION = 0
+   _ACT_PLAYER_AI1_ATTACK = 1
+   _ACT_PLAYER_AI1_NONE = 2
+   g_NpcAI_PLAYER_AI1_Step = {}
+   g_NpcAI_PLAYER_AI1_Step.Init = {}
+   g_NpcAI_PLAYER_AI1_Step.Update = {}
+   g_NpcAI_PLAYER_AI1_Step.Release = {}
+   g_NpcAI_PLAYER_AI1_Step.Init[_ACT_PLAYER_AI1_INITIALZATION] = AIStep_PLAYER_AI1_Init_Init
+   g_NpcAI_PLAYER_AI1_Step.Update[_ACT_PLAYER_AI1_INITIALZATION] = AIStep_PLAYER_AI1_Init_Update
+   g_NpcAI_PLAYER_AI1_Step.Release[_ACT_PLAYER_AI1_INITIALZATION] = AIStep_PLAYER_AI1_Init_Release
+   g_NpcAI_PLAYER_AI1_Step.Init[_ACT_PLAYER_AI1_ATTACK] = AIStep_PLAYER_AI1_Attack_Init
+   g_NpcAI_PLAYER_AI1_Step.Update[_ACT_PLAYER_AI1_ATTACK] = AIStep_PLAYER_AI1_Attack_Update
+   g_NpcAI_PLAYER_AI1_Step.Release[_ACT_PLAYER_AI1_ATTACK] = AIStep_PLAYER_AI1_Attack_Release
+   g_NpcAI_PLAYER_AI1_Step.Init[_ACT_PLAYER_AI1_NONE] = AIStep_PLAYER_AI1_None_Init
+   g_NpcAI_PLAYER_AI1_Step.Update[_ACT_PLAYER_AI1_NONE] = AIStep_PLAYER_AI1_None_Update
+   g_NpcAI_PLAYER_AI1_Step.Release[_ACT_PLAYER_AI1_NONE] = AIStep_PLAYER_AI1_None_Release
+   Current_Step = 0
+   Current_Weapon = 0
+   Current_Mode = 0
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   return 1
+end
+
+AIStep_PLAYER_AI1_Init_Init = function(npc)
+end
+
+AIStep_PLAYER_AI1_Init_Update = function(npc)
+   ChangeNpcAI_PLAYER_AI1_Step(npc, _ACT_PLAYER_AI1_NONE)
+end
+
+AIStep_PLAYER_AI1_Init_Release = function(npc)
+end
+
+
+AIStep_PLAYER_AI1_Attack_Init = function(npc)
+  npc:SetAttackOnOff(true)
+--ScriptLog("lal")
+--ScriptLog(GetTime())
+  --npc:SetAttackEndFlg(false)
+   npc:SetEventTime()
+end
+
+AIStep_PLAYER_AI1_Attack_Update = function(npc)
+local file = assert(loadfile("AI_Config.txt"))
+      file()
+pcall(GAF_Skill_Buff)
+     local taozi = SearchNpc(3248616)
+	 
+	 local mine = SearchNpc(3248601)
+	 
+	 if mine ~= 0 then
+		mineNPC = DocumentFind(mine)
+		mineNPC:SetRoadSearchType(0)
+		mineNPC:ReMoveObject()
+	end
+
+	 if taozi == 0 then
+		taozi = SearchNpc(3248416)
+	 end
+	 
+	 if taozi == 0 then
+		taozi = SearchNpc(3248216)
+	 end
+	 
+	 if taozi == 0 then
+		taozi = SearchNpc(3248101)
+	 end
+	 
+	 
+     if taozi ~= 0 then
+    	local taoziNPC = DocumentFind(taozi)
+   	if taoziNPC:GetHp() <= taoziNPC:GetMaxHp()*M16_Boss_MinHp_Factor and GetTime() <= M16_Wait_Time then
+			   npc:SetAttackTarget(0)
+   	   ChangeNpcAI_PLAYER_AI1_Step(npc, _ACT_PLAYER_AI1_NONE)
+	end
+   end
+
+   local cur_pos = npc:GetPos()
+  -- io.output(io.open("test.txt", "a"))
+ -- io.write(npc:GetAttackTarget()," atk target\n")
+  -- io.close()
+   if npc:GetEventTime(Recv_Delay) == true and npc:GetEventTime(9999) == false then
+      npc:SetAttackOnOff(false)
+      npc:SetEventTime()
+      npc:SetAttackTarget(0)
+	  local file = assert(loadfile("AI_Config.txt"))
+      file()
+      ChangeNpcAI_PLAYER_AI1_Step(npc, _ACT_PLAYER_AI1_NONE)
+   end
+   if CheckObejctAlive(npc:GetAttackTarget()) == false then
+   npc:SetAttackTarget(0)
+   ChangeNpcAI_PLAYER_AI1_Step(npc, _ACT_PLAYER_AI1_NONE)
+   end
+   if AI_VAC_Enable == 1 then
+   DocumentFind(npc:GetAttackTarget()):SetNowPos(vector3(cur_pos.x+X_Diff,cur_pos.y+Y_Diff,cur_pos.z+Z_Diff))
+   end
+end
+
+AIStep_PLAYER_AI1_Attack_Release = function(npc)
+   npc:SetAttackOnOff(false)
+end
+
+
+AIStep_PLAYER_AI1_None_Init = function(npc)
+   npc:SetAttackOnOff(false)
+   npc:SetEventTime()
+   npc:ChangeWeapon(Default_Weapon)
+   Current_Weapon = Default_Weapon
+end
+
+AIStep_PLAYER_AI1_None_Update = function(npc)
+local file = assert(loadfile("AI_Config.txt"))
+      file()
+pcall(GAF_Skill_Buff)
+    npc:ChangeWeapon(Default_Weapon)
+    Current_Weapon = Default_Weapon
+	if t_orgpos1 ~= nil then
+		if false == CheckArrvial_Not_Y(npc:GetID(), t_orgpos1, Player_Tolerance) then
+		PlayerWarp(npc:GetID(), vector3(t_orgpos1.x,10,t_orgpos1.z), vector3(0,0,1))
+		end
+	end
+	 if npc:GetEventTime(Recv_Delay) == true and npc:GetEventTime(9999) == false then
+      npc:SetAttackOnOff(false)
+      npc:SetEventTime()
+      npc:SetAttackTarget(0)
+	  local file = assert(loadfile("AI_Config.txt"))
+      file()
+   end
+   if npc:GetAttackTarget() == 0 then
+      SearchLockAllyNPC(npc:GetID())
+   else
+      if CheckObejctAlive(npc:GetAttackTarget()) == false then
+	  SearchLockAllyNPC(npc:GetID())
+      end
+   end
+    if npc:GetAttackTarget() ~= 0 and CheckObejctAlive(npc:GetAttackTarget()) == true then
+         ChangeNpcAI_PLAYER_AI1_Step(npc, _ACT_PLAYER_AI1_ATTACK)
+   end
+ end
+
+AIStep_PLAYER_AI1_None_Release = function(npc)
+end
+
+PLAYER_PVP1_LuaInit = function()
+   _ACT_PLAYER_PVP1_INITIALZATION = 0
+   _ACT_PLAYER_PVP1_ATTACK = 1
+   _ACT_PLAYER_PVP1_NONE = 2
+   g_NpcAI_PLAYER_PVP1_Step = {}
+   g_NpcAI_PLAYER_PVP1_Step.Init = {}
+   g_NpcAI_PLAYER_PVP1_Step.Update = {}
+   g_NpcAI_PLAYER_PVP1_Step.Release = {}
+   g_NpcAI_PLAYER_PVP1_Step.Init[_ACT_PLAYER_PVP1_INITIALZATION] = AIStep_PLAYER_PVP1_Init_Init
+   g_NpcAI_PLAYER_PVP1_Step.Update[_ACT_PLAYER_PVP1_INITIALZATION] = AIStep_PLAYER_PVP1_Init_Update
+   g_NpcAI_PLAYER_PVP1_Step.Release[_ACT_PLAYER_PVP1_INITIALZATION] = AIStep_PLAYER_PVP1_Init_Release
+   g_NpcAI_PLAYER_PVP1_Step.Init[_ACT_PLAYER_PVP1_ATTACK] = AIStep_PLAYER_PVP1_Attack_Init
+   g_NpcAI_PLAYER_PVP1_Step.Update[_ACT_PLAYER_PVP1_ATTACK] = AIStep_PLAYER_PVP1_Attack_Update
+   g_NpcAI_PLAYER_PVP1_Step.Release[_ACT_PLAYER_PVP1_ATTACK] = AIStep_PLAYER_PVP1_Attack_Release
+   g_NpcAI_PLAYER_PVP1_Step.Init[_ACT_PLAYER_PVP1_NONE] = AIStep_PLAYER_PVP1_None_Init
+   g_NpcAI_PLAYER_PVP1_Step.Update[_ACT_PLAYER_PVP1_NONE] = AIStep_PLAYER_PVP1_None_Update
+   g_NpcAI_PLAYER_PVP1_Step.Release[_ACT_PLAYER_PVP1_NONE] = AIStep_PLAYER_PVP1_None_Release
+   Current_Step = 0
+   Current_Weapon = 0
+   -- Default_Weapon = 0
+   -- X_Diff = 0
+   -- Y_Diff = 0
+   -- Z_Diff = 0
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   return 1
+end
+
+AIStep_PLAYER_PVP1_Init_Init = function(npc)
+        npc:ChangeWeapon(Default_Weapon)
+        Current_Weapon = Default_Weapon
+      --PLAYER_PVP1_CurrentWeapon = UNIT_WEAPON_CHANGE_SECOND
+end
+
+AIStep_PLAYER_PVP1_Init_Update = function(npc)
+   ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_NONE)
+end
+
+AIStep_PLAYER_PVP1_Init_Release = function(npc)
+end
+
+
+AIStep_PLAYER_PVP1_Attack_Init = function(npc)
+   npc:SetAttackOnOff(AI_Attack)
+   npc:SetAttackEndFlg(false)
+   npc:SetEventTime()
+   -- npc:SetEventTime()
+   --npc:ChangeWeapon(UNIT_WEAPON_CHANGE_FIRST)
+   --print("\177\217\193\162 \176\248\176\221 \189\195\192\219")
+end
+
+AIStep_PLAYER_PVP1_Attack_Update = function(npc)
+local file = assert(loadfile("AI_Config.txt"))
+      file()
+   npc:SetAttackOnOff(AI_Attack)
+   --local R = npc:RangedAttackTest(npc:GetAttackTarget())
+   --local A = npc:GetAttackTarget()
+   local cur_pos = npc:GetPos()
+  -- io.output(io.open("test.txt", "a"))
+ -- io.write(npc:GetAttackTarget()," atk target\n")
+  -- io.close()
+   if npc:GetEventTime(Recv_Delay) == true and npc:GetEventTime(9999) == false then
+      npc:SetAttackOnOff(false)
+      npc:SetEventTime()
+      npc:SetAttackTarget(0)
+	  local file = assert(loadfile("AI_Config.txt"))
+      file()
+      ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_NONE)
+   end
+   if CheckObejctAlive(npc:GetAttackTarget()) == false then
+   npc:SetAttackTarget(0)
+   ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_NONE)
+   end
+   DocumentFind(npc:GetAttackTarget()):SetNowPos(vector3(cur_pos.x+X_Diff,cur_pos.y+Y_Diff,cur_pos.z+Z_Diff))
+   -- if npc:GetAttackTarget():GetHp() <= 0 then
+         -- ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_NONE)
+		 -- io.output(io.open("test.txt", "a"))
+-- io.write("hp = 0\n")
+-- io.close()
+-- end
+   -- if npc:GetAttackTarget() == 0 then
+   -- io.output(io.open("test.txt", "a"))
+-- io.write(" target = 0\n")
+-- io.close()
+      -- ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_NONE)
+      -- print(" npc:GetAttackTarget() == 0")
+   -- else
+      -- if CheckObejctAlive(npc:GetAttackTarget()) == false then
+         -- ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_NONE)
+         -- print(" CheckObejctAlive(npc:GetAttackTarget()) == false")
+		 -- io.output(io.open("test.txt", "a"))
+-- io.write("object = false\n")
+-- io.close()
+      -- else
+         -- if npc:CheckInAttackLength(npc:GetAttackTarget()) == false then
+            -- ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_NONE)
+			-- io.output(io.open("test.txt", "a"))
+
+            -- print(" npc:CheckInAttackLength(npc:GetAttackTarget()) == false")
+         -- end
+      -- end
+   -- end
+   -- local L = npc:GetUnitLength(npc:GetAttackTarget())
+   -- local C = npc:UnitEnableHurt(npc:GetAttackTarget())
+    -- local A = CheckObejctAlive(npc:GetAttackTarget())
+	-- io.output(io.open("test.txt", "a"))
+	      -- io.write(A,"\n")
+  -- io.close()
+   -- if npc:CheckBulletNum(UNIT_WEAPON_CHANGE_THIRD) == npc:GetCurCombo() < 4 then
+      -- ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_ATTACK_COMBO)
+   -- end
+   -- if C == false or npc:GetMeleeAttackLength() < L then
+      -- print("C == false or L > npc:GetMeleeAttackLength()")
+      -- print("_ACT_PLAYER_PVP1_ATTACK -> _ACT_PLAYER_PVP1_NONE")
+      -- ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_NONE)
+   -- else
+       -- if A == npc:GetAttackEndFlg() == true then
+         --print("npc:GetAttackEndFlg() == true or A == false")
+         --print("_ACT_PLAYER_PVP1_ATTACK -> _ACT_PLAYER_PVP1_NONE")
+	-- if npc:CheckInAttackLength(npc:GetAttackTarget()) == false then
+      --Command_JustMoveUnitPos(npc, npc:GetAttackTarget())
+	  -- if CheckKeyBoard(DIK_T) == true then
+	   -- MeleeMode = not MeleeMode
+	      -- io.output(io.open("test.txt", "a"))
+      -- io.write("pressed\n", MeleeMode)
+  -- io.close()
+	   -- end
+	   --if MeleeMode == true then
+	  
+	  --PlayerWarp(npc:GetID(), t_vacpos1, vector3(0,0,1))
+   --end
+		 --if CheckObjectAlive(npc:GetAttackTarget()) == false then
+         -- if A == npc:GetAttackEndFlg() == true then
+		 -- ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_NONE)
+      --elseif C == true and L < 150 then
+         --[[ DECOMPILER ERROR 189: Attempted to build a boolean expression without a pending context ]]
+		-- end
+end
+-- end
+
+AIStep_PLAYER_PVP1_Attack_Release = function(npc)
+   npc:SetAttackOnOff(false)
+   -- io.output(io.open("test.txt", "a"))
+      -- io.write("released\n")
+  -- io.close()
+   --npc:SetSuccessionAttackFlg(false)
+end
+
+
+AIStep_PLAYER_PVP1_None_Init = function(npc)
+   npc:SetAttackOnOff(false)
+   --npc:SetAttackEndFlg(false)
+   npc:SetEventTime()
+   npc:ChangeWeapon(Default_Weapon)
+   Current_Weapon = Default_Weapon
+   --npc:GetCommanderID()
+   --npc:ClearActEvent()
+   --npc:ChangeWeapon(UNIT_WEAPON_CHANGE_SECOND)
+end
+
+AIStep_PLAYER_PVP1_None_Update = function(npc)
+local file = assert(loadfile("AI_Config.txt"))
+      file()
+    npc:ChangeWeapon(Default_Weapon)
+    Current_Weapon = Default_Weapon
+	if false == CheckArrvial_Not_Y(npc:GetID(), t_vacpos1, Player_Tolerance) then
+	PlayerWarp(npc:GetID(), vector3(t_vacpos1.x,10,t_vacpos1.z), vector3(0,0,1))
+	end
+	 if npc:GetEventTime(Recv_Delay) == true and npc:GetEventTime(9999) == false then
+      npc:SetAttackOnOff(false)
+      npc:SetEventTime()
+      npc:SetAttackTarget(0)
+	  local file = assert(loadfile("AI_Config.txt"))
+      file()
+   end
+   if npc:GetAttackTarget() == 0 then
+   --npc:SetAttackTarget(npc:GetBadgayID())
+      npc:SetAttackTarget(math.random(1,GetNumPlayer()))
+	  --SearchLockPlayer(npc:GetID())
+	     -- io.output(io.open("test.txt", "a"))
+      -- io.write(npc:GetAttackTarget()," target id\n")
+  -- io.close()
+   else
+      if CheckObejctAlive(npc:GetAttackTarget()) == false then
+	  --SearchLockPlayer(npc:GetID())
+	  npc:SetAttackTarget(math.random(1,GetNumPlayer()))
+      end
+   end
+    if npc:GetAttackTarget() ~= 0 and CheckObejctAlive(npc:GetAttackTarget()) == true then
+   --if SearchLockPlayer(npc:GetID()) == true then
+      --print(npc:GetAttackTarget())
+      --local L = npc:GetUnitLength(npc:GetAttackTarget())
+      --if npc:UnitEnableHurt(npc:GetAttackTarget()) == false then
+         --print("npc:UnitEnableHurt(npc:GetAttackTarget()) == false")
+         --print("_ACT_PLAYER_PVP1_NONE -> _ACT_PLAYER_PVP1_MOVINGATTACK")
+         --npc:MoveStop()
+         ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_ATTACK)
+      -- else
+         -- if npc:MeleeAttackTest(npc:GetAttackTarget()) == true and L < npc:GetMeleeAttackLength() then
+            -- print("_ACT_PLAYER_PVP1_NONE -> _ACT_PLAYER_PVP1_TARGETDASH")
+            -- npc:MoveStop()
+            -- npc:SetMoveTargetPos(DocumentFind(npc:GetAttackTarget()):GetPos())
+            -- ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_TARGETDASH)
+         -- else
+            -- if npc:CheckInAttackLength(npc:GetAttackTarget()) == npc:RangedAttackTest(npc:GetAttackTarget()) ~= true then
+               -- print("npc:RangedAttackTest(npc:GetAttackTarget()) == true")
+               -- print("_ACT_PLAYER_PVP1_NONE -> _ACT_PLAYER_PVP1_MOVINGATTACK")
+               -- npc:MoveStop()
+               -- ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_MOVINGATTACK)
+            -- else
+               -- print("_ACT_PLAYER_PVP1_NONE -> _ACT_PLAYER_PVP1_MOVE")
+               -- npc:ClearActEvent()
+               -- npc:SetMoveTargetPos(DocumentFind(npc:GetAttackTarget()):GetPos())
+               -- ChangeNpcAI_PLAYER_PVP1_Step(npc, _ACT_PLAYER_PVP1_MOVE)
+            -- end
+
+      --end
+   end
+ end
+
+AIStep_PLAYER_PVP1_None_Release = function(npc)
+end
+
+
+VAC006_VSAI_Update = function(npc)
+   g_NpcAI_VAC006_VSAI_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_VAC006_VSAI_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_VAC006_VSAI_Step, npc, t_nStep)
+   return true
+end
+
+VAC006_VSAI_LuaInit = function()
+   _ACT_VAC006_VSAI_INITIALZATION = 0
+   _ACT_VAC006_VSAI_NONE = 1
+   _ACT_VAC006_VSAI_MOVE_TARGETPOS = 2
+   g_NpcAI_VAC006_VSAI_Step = {}
+   g_NpcAI_VAC006_VSAI_Step.Init = {}
+   g_NpcAI_VAC006_VSAI_Step.Update = {}
+   g_NpcAI_VAC006_VSAI_Step.Release = {}
+   g_NpcAI_VAC006_VSAI_Step.Init[_ACT_VAC006_VSAI_INITIALZATION] = AIStep_VAC006_VSAI_Init_Init
+   g_NpcAI_VAC006_VSAI_Step.Update[_ACT_VAC006_VSAI_INITIALZATION] = AIStep_VAC006_VSAI_Init_Update
+   g_NpcAI_VAC006_VSAI_Step.Release[_ACT_VAC006_VSAI_INITIALZATION] = AIStep_VAC006_VSAI_Init_Release
+   g_NpcAI_VAC006_VSAI_Step.Init[_ACT_VAC006_VSAI_NONE] = AIStep_VAC006_VSAI_None_Init
+   g_NpcAI_VAC006_VSAI_Step.Update[_ACT_VAC006_VSAI_NONE] = AIStep_VAC006_VSAI_None_Update
+   g_NpcAI_VAC006_VSAI_Step.Release[_ACT_VAC006_VSAI_NONE] = AIStep_VAC006_VSAI_None_Release
+   g_NpcAI_VAC006_VSAI_Step.Init[_ACT_VAC006_VSAI_MOVE_TARGETPOS] = AIStep_VAC006_VSAI_Move_TargetPos_Init
+   g_NpcAI_VAC006_VSAI_Step.Update[_ACT_VAC006_VSAI_MOVE_TARGETPOS] = AIStep_VAC006_VSAI_Move_TargetPos_Update
+   g_NpcAI_VAC006_VSAI_Step.Release[_ACT_VAC006_VSAI_MOVE_TARGETPOS] = AIStep_VAC006_VSAI_Move_TargetPos_Release
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   return 1
+end
+
+AIStep_VAC006_VSAI_Init_Init = function(npc)
+end
+
+AIStep_VAC006_VSAI_Init_Update = function(npc)
+   ChangeNpcAI_VAC006_VSAI_Step(npc, _ACT_VAC006_VSAI_NONE)
+end
+
+AIStep_VAC006_VSAI_Init_Release = function(npc)
+end
+
+
+
+AIStep_VAC006_VSAI_None_Init = function(npc)
+   npc:SetAttackOnOff(false)
+   npc:SetAttackEndFlg(false)
+   npc:GetCommanderID()
+   npc:ClearActEvent()
+   npc:SetJumpTime(0)
+end
+
+AIStep_VAC006_VSAI_None_Update = function(npc)
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   GAF_FindTarget(npc)
+   t_pos1 = DocumentFind(npc:GetAttackTarget()):GetPos()
+   
+   npc:SetMoveTargetPos(vector3(t_pos1.x+X_VSAI_Diff,t_pos1.y,t_pos1.z+Z_VSAI_Diff))
+pcall(GAF_Skill_Buff)
+
+   --npc:SetNowPos(vector3(0,0,0))
+  --t_vacpos1 = GetPlayer(AI_Player):GetPos()
+	--		   if false == CheckArrvial_Not_Y(npc:GetID(), DocumentFind(npc:GetAttackTarget()):GetPos(), Range_Tolerance) then
+	--		   npc:SetMoveTargetPos(DocumentFind(npc:GetAttackTarget()):GetPos())
+	--		   ChangeNpcAI_VAC006_VSAI_Step(npc, _ACT_VAC006_VSAI_MOVE_TARGETPOS)
+--					if t_vacpos1 ~= nil then
+					--npc:SetNowPos(vector3(t_vacpos1.x+(math.random(X_VSAI_Range1,X_VSAI_Range2)),Y_VSAI_Cord,t_vacpos1.z+(math.random(Z_VSAI_Range1,Z_VSAI_Range2))))
+		--			end
+   
+--			   end
+end
+
+AIStep_VAC006_VSAI_None_Release = function(npc)
+end
+
+AIStep_VAC006_VSAI_Move_TargetPos_Init = function(npc)
+   npc:SetBoostGauge(5000)
+   npc:SetMoveType(UNIT_MOVE_EVENT_DASH)
+   npc:SetEventTime()
+   npc:SetJumpTime(0)
+end
+
+AIStep_VAC006_VSAI_Move_TargetPos_Update = function(npc)
+         if true == CheckArrvial_Not_Y(npc:GetID(), npc:GetMoveTargetPos(), Range_Tolerance)  then
+            ChangeNpcAI_VAC006_VSAI_Step(npc, _ACT_VAC006_VSAI_NONE)
+         end
+end
+
+AIStep_VAC006_VSAI_Move_TargetPos_Release = function(npc)
+end

@@ -1,0 +1,69 @@
+SingleMission001_Event01 = function(GameMode)
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   if Single_Mod == 1 then
+		pcall(SingleModOn)
+	end
+      	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+	
+   for i = 1, GetNumPlayer() do
+      --GetPlayer(i):SetTerrainRect(-10402, -8474, -6500, -11870)
+      PlayerWarp(i, vector3(GetPlayer(i):GetPos().x, 0, GetPlayer(1):GetPos().z), vector3(0, 0, 1))
+   end
+
+   GameMode:HideBlock("whitebase_1")
+   if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   t_vacpos1 = t_LocalPlayer:GetPos()
+   t_orgpos1 = t_LocalPlayer:GetPos()
+   return 123
+end
+
+SingleMission001_Event02 = function(GameMode)
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   
+      	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+   
+   local xpos = 8340
+   for i = 1, GetNumPlayer() do
+      --GetPlayer(i):SetTerrainRect(-6530, 11045, -270, 6915)
+      --PlayerWarp(i, vector3(-5560, 0, xpos), vector3(0, 0, 1))
+      xpos = xpos - 400
+   end
+   if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   t_vacpos1 = t_LocalPlayer:GetPos()
+   t_orgpos1 = t_LocalPlayer:GetPos()
+   --GameMode:UnHideBlock("montgomery_01")
+   --GameMode:UnHideBlock("drake_01")
+   return 123
+end
+
+SingleMission001_Event03 = function(GameMode)
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   
+      	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+   
+   local xpos = 9459
+   for i = 1, GetNumPlayer() do
+      --GetPlayer(i):SetTerrainRect(7304, -8383, 10695, -11773)
+      --PlayerWarp(i, vector3(xpos, 0, -11400), vector3(0, 0, 1))
+      xpos = xpos - 500
+   end
+   if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   t_vacpos1 = t_LocalPlayer:GetPos()
+   t_orgpos1 = t_LocalPlayer:GetPos()
+   --GameMode:UnHideBlock("whitebase_1")
+   return 123
+end
+
+

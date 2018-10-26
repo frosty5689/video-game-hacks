@@ -1,0 +1,39 @@
+Mission016_Start01_LuaInit = function(GameMode)
+   g_Mission016_Start01 = {}
+   g_Mission016_Start01.Init = {}
+   g_Mission016_Start01.Update = {}
+   g_Mission016_Start01.Release = {}
+   g_nNowGameModeStep = 0
+   _Mission016_Start01_Redy = GameMode:AddStepNum()
+   _Mission016_Start01_010 = GameMode:AddStepNum()
+   _Mission016_Start01_020 = GameMode:AddStepNum()
+   g_Mission016_Start01.Init[_Mission016_Start01_Redy] = Mission016_Start01_Ready_Init
+   g_Mission016_Start01.Update[_Mission016_Start01_Redy] = Mission016_Start01_Ready_Update
+   g_Mission016_Start01.Release[_Mission016_Start01_Redy] = Mission016_Start01_Ready_Release
+   g_Mission016_Start01.Init[_Mission016_Start01_010] = Mission016_Start0101_Init
+   g_Mission016_Start01.Update[_Mission016_Start01_010] = Mission016_Start0101_Update
+   g_Mission016_Start01.Release[_Mission016_Start01_010] = Mission016_Start0101_Release
+   g_Mission016_Start01.Init[_Mission016_Start01_020] = Mission016_Start0102_Init
+   g_Mission016_Start01.Update[_Mission016_Start01_020] = Mission016_Start0102_Update
+   g_Mission016_Start01.Release[_Mission016_Start01_020] = Mission016_Start0102_Release
+   --Mission016_Start01_Skip(GameMode)
+   -- for i = 1, 120 do
+      -- t_dummy = GameMode:CreateNpc(3248101, vector3(-7400, 3000, 7500), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+      -- t_dummy:SetLuaFunctionName("MM022_Ranger_01ex")
+      -- t_dummy:SetRoadSearchType(0)
+      -- t_dummy:ReMoveObject()
+   -- end
+   
+   g_Block = GameMode:CreateBlock(80351, vector3(0, -5000, 0), OBJECT_TEAM_BLUE, vector3(0, 0, 1))
+   g_Block:ReMoveObject()
+   ChangeGameModeStep(GameMode, _Mission016_Start01_020, g_Mission016_Start01)
+   return 1
+end
+
+
+Mission016_Start0102_Update = function(GameMode)
+   --g_Block:ReMoveObject()
+   GameMode:DemoEnd()
+   GameMode:ChangeGameCamera()
+   return 456
+end

@@ -1,0 +1,32 @@
+Mission016_Middle03_LuaInit = function(GameMode)
+   g_Mission016_Middle03 = {}
+   g_Mission016_Middle03.Init = {}
+   g_Mission016_Middle03.Update = {}
+   g_Mission016_Middle03.Release = {}
+   g_nNowGameModeStep = 0
+   _Mission016_Middle03_Redy = GameMode:AddStepNum()
+   _Mission016_Middle03_010 = GameMode:AddStepNum()
+   _Mission016_Middle03_020 = GameMode:AddStepNum()
+   g_Mission016_Middle03.Init[_Mission016_Middle03_Redy] = Mission016_Middle03_Ready_Init
+   g_Mission016_Middle03.Update[_Mission016_Middle03_Redy] = Mission016_Middle03_Ready_Update
+   g_Mission016_Middle03.Release[_Mission016_Middle03_Redy] = Mission016_Middle03_Ready_Release
+   g_Mission016_Middle03.Init[_Mission016_Middle03_010] = Mission016_Middle0301_Init
+   g_Mission016_Middle03.Update[_Mission016_Middle03_010] = Mission016_Middle0301_Update
+   g_Mission016_Middle03.Release[_Mission016_Middle03_010] = Mission016_Middle0301_Release
+   g_Mission016_Middle03.Init[_Mission016_Middle03_020] = Mission016_Middle0302_Init
+   g_Mission016_Middle03.Update[_Mission016_Middle03_020] = Mission016_Middle0302_Update
+   g_Mission016_Middle03.Release[_Mission016_Middle03_020] = Mission016_Middle0302_Release
+  -- Mission016_Middle03_Skip(GameMode)
+  
+   g_Block = GameMode:CreateBlock(80352, vector3(0, -5000, 0), OBJECT_TEAM_BLUE, vector3(0, 0, 1))
+   g_Block:ReMoveObject()
+   ChangeGameModeStep(GameMode, _Mission016_Middle03_020, g_Mission016_Middle03)
+   return 1
+end
+
+Mission016_Middle0302_Update = function(GameMode)
+   --g_Block:ReMoveObject()
+   GameMode:DemoEnd()
+   GameMode:ChangeGameCamera()
+   return 456
+end

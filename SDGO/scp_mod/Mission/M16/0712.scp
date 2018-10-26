@@ -1,0 +1,92 @@
+OGMission007_Event01 = function(GameMode)
+   GameMode:HideBlock("Ptolemaios_core")
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   if M16_Mod == 1 then
+	pcall(M16ModOn)
+end
+   	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+   
+   local xpos = GetPlayer(1):GetPos().x
+   
+   
+   for i = 1, GetNumPlayer() do
+      --GetPlayer(i):SetTerrainRect(0, 4920, 15565, -4920)
+      --PlayerWarp(i, vector3(-1190, 0, zpos), vector3(0, 0, 1))
+      PlayerWarp(i, vector3(xpos, 0, GetPlayer(1):GetPos().z), vector3(0, 0, 1))
+      xpos = xpos - 200
+end
+   if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   t_vacpos1 = t_LocalPlayer:GetPos()
+   t_orgpos1 = t_LocalPlayer:GetPos()
+   return 123
+end
+
+OGMission007_Event02 = function(GameMode)
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   
+   	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+   
+   local xpos = -1190
+   for i = 1, GetNumPlayer() do
+      --GetPlayer(i):SetTerrainRect(-15565, 4920, 0, -4920)
+      PlayerWarp(i, vector3(xpos, 0, 1200), vector3(0, 0, 1))
+      xpos = xpos - 200
+end
+   if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   t_vacpos1 = t_LocalPlayer:GetPos()
+   t_orgpos1 = t_LocalPlayer:GetPos()
+   GameMode:HideBlock("Ptolemaios_core")
+   return 123
+end
+
+OGMission007_Event03 = function(GameMode)
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   
+   	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+   
+   local zpos = 1200
+   for i = 1, GetNumPlayer() do
+      --GetPlayer(i):SetTerrainRect(-15565, 4920, 0, -4920)
+      PlayerWarp(i, vector3(-1190, 0, zpos), vector3(0, 0, 1))
+      zpos = zpos - 400
+end
+   if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   t_vacpos1 = t_LocalPlayer:GetPos()
+   t_orgpos1 = t_LocalPlayer:GetPos()
+   return 123
+end
+
+OGMission007_Event04 = function(GameMode)
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   
+   	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+   
+   local zpos = 1200
+   for i = 1, GetNumPlayer() do
+      --GetPlayer(i):SetTerrainRect(-15565, 4920, 0, -4920)
+      PlayerWarp(i, vector3(-1190, 0, zpos), vector3(0, 0, 1))
+      zpos = zpos - 400
+   end
+   if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   t_vacpos1 = t_LocalPlayer:GetPos()
+   t_orgpos1 = t_LocalPlayer:GetPos()
+   return 123
+end
+
+

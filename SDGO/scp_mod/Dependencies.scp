@@ -1,0 +1,138 @@
+SkipMovieOn = function()
+-- Moon Base
+	pcall(dofileFS, "scp_mod\\Skip\\M05\\0243.scp")
+	pcall(dofileFS, "scp_mod\\Skip\\M05\\0244.scp")
+	pcall(dofileFS, "scp_mod\\Skip\\M05\\0245.scp")
+	pcall(dofileFS, "scp_mod\\Skip\\M05\\0246.scp")
+	pcall(dofileFS, "scp_mod\\Skip\\M05\\0247.scp")
+	
+-- Taozi
+	pcall(dofileFS, "scp_mod\\Skip\\M16\\0735.scp")
+	pcall(dofileFS, "scp_mod\\Skip\\M16\\0736.scp")
+	pcall(dofileFS, "scp_mod\\Skip\\M16\\0737.scp")
+	pcall(dofileFS, "scp_mod\\Skip\\M16\\0738.scp")
+	pcall(dofileFS, "scp_mod\\Skip\\M16\\0739.scp")
+
+end
+
+SkipMovieOff = function()
+	pcall(dofile, "scp\\0243.scp")
+	pcall(dofile, "scp\\0244.scp")
+	pcall(dofile, "scp\\0245.scp")
+	pcall(dofile, "scp\\0246.scp")
+	pcall(dofile, "scp\\0247.scp")
+
+	pcall(dofile, "scp\\0735.scp")
+	pcall(dofile, "scp\\0736.scp")
+	pcall(dofile, "scp\\0737.scp")
+	pcall(dofile, "scp\\0738.scp")
+	pcall(dofile, "scp\\0739.scp")
+end
+
+--s1
+SingleModOn = function()
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\0223.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\0752.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1118.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1125.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1149.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1163.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1164.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1171.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1172.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1175.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1176.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1186.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1187.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1188.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1189.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\Single\\1190.scp")
+end
+
+SingleModOff = function()
+	if M05_Mod == 0 then
+		pcall(dofile, "scp\\0223.scp")
+	end
+	if M16_Mod == 0 then
+		pcall(dofile, "scp\\0752.scp")
+	end
+	pcall(dofile, "scp\\1118.scp")
+	pcall(dofile, "scp\\1125.scp")
+	pcall(dofile, "scp\\1149.scp")
+	pcall(dofile, "scp\\1163.scp")
+	pcall(dofile, "scp\\1164.scp")
+	pcall(dofile, "scp\\1171.scp")
+	pcall(dofile, "scp\\1172.scp")
+	pcall(dofile, "scp\\1175.scp")
+	pcall(dofile, "scp\\1176.scp")
+	pcall(dofile, "scp\\1186.scp")
+	pcall(dofile, "scp\\1187.scp")
+	pcall(dofile, "scp\\1188.scp")
+	pcall(dofile, "scp\\1189.scp")
+	pcall(dofile, "scp\\1190.scp")
+end
+
+M05ModOn = function()
+	pcall(dofileFS, "scp_mod\\Mission\\M05\\0176.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M05\\0185.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M05\\0223.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M05\\0237.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M05\\0239.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M05\\0240.scp")
+end
+
+M05ModOff = function()
+	pcall(dofile, "scp\\0176.scp")
+	pcall(dofile, "scp\\0185.scp")
+	if Single_Mod == 0 then
+		pcall(dofile, "scp\\0223.scp")
+	end
+	pcall(dofile, "scp\\0237.scp")
+	pcall(dofile, "scp\\0239.scp")
+	pcall(dofile, "scp\\0240.scp")
+end
+--EX15
+M16ModOn = function()
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0328.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0329.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0342.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0712.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0719.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0720.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0721.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0722.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0723.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0724.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0725.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0732.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0733.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0734.scp")
+	pcall(dofileFS, "scp_mod\\Mission\\M16\\0752.scp")
+	
+end
+
+M16ModOff = function()
+	pcall(dofile, "scp\\0328.scp")
+	pcall(dofile, "scp\\0329.scp")
+	pcall(dofile, "scp\\0342.scp")
+	pcall(dofile, "scp\\0712.scp")
+	pcall(dofile, "scp\\0719.scp")
+	pcall(dofile, "scp\\0720.scp")
+	pcall(dofile, "scp\\0721.scp")
+	pcall(dofile, "scp\\0722.scp")
+	pcall(dofile, "scp\\0723.scp")
+	pcall(dofile, "scp\\0724.scp")
+	pcall(dofile, "scp\\0725.scp")
+	pcall(dofile, "scp\\0732.scp")
+	pcall(dofile, "scp\\0733.scp")
+	pcall(dofile, "scp\\0734.scp")
+	if Single_Mod == 0 then
+		pcall(dofile, "scp\\0752.scp")
+	end
+	
+	pcall(dofile, "scp\\0735.scp")
+	pcall(dofile, "scp\\0736.scp")
+	pcall(dofile, "scp\\0737.scp")
+	pcall(dofile, "scp\\0738.scp")
+	pcall(dofile, "scp\\0739.scp")
+end

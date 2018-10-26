@@ -1,0 +1,52 @@
+MM004_NpcTurret001_Update = function(npc)
+   g_NpcAI_MM004_TR001_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_MM004_TR001_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_MM004_TR001_Step, npc, t_nStep)
+   return true
+end
+
+MM004_NpcTurret001_LuaInit = function()
+   _ACT_MM004_TR001_INITIALZATION = 0
+   g_NpcAI_MM004_TR001_Step = {}
+   g_NpcAI_MM004_TR001_Step.Init = {}
+   g_NpcAI_MM004_TR001_Step.Update = {}
+   g_NpcAI_MM004_TR001_Step.Release = {}
+   g_NpcAI_MM004_TR001_Step.Init[_ACT_MM004_TR001_INITIALZATION] = AIStep_MM004_TR001_Init_Init
+   g_NpcAI_MM004_TR001_Step.Update[_ACT_MM004_TR001_INITIALZATION] = AIStep_MM004_TR001_Init_Update
+   g_NpcAI_MM004_TR001_Step.Release[_ACT_MM004_TR001_INITIALZATION] = AIStep_MM004_TR001_Init_Release
+   return 1
+end
+
+AIStep_MM004_TR001_Init_Init = function(npc)
+end
+
+AIStep_MM004_TR001_Init_Update = function(npc)
+   local id1 = 0
+
+if id1 == 0 then
+   id1 = SearchNpc(3594083)
+end
+
+if id1 == 0 then
+   id1 = SearchNpc(3594098)
+end
+
+if id1 == 0 then
+   id1 = SearchNpc(3594113)
+end
+
+if id1 == 0 then
+   id1 = SearchNpc(3594128)
+end
+
+if npc:GetID() ~=  id1 and npc:GetID() ~= id1+6 then
+   npc:SetLuaFunctionName("VAC002_BigMob")
+end
+
+end
+
+AIStep_MM004_TR001_Init_Release = function(npc)
+end

@@ -1,0 +1,151 @@
+PLAYER_AI2_Update = function(npc)
+-- io.output(io.open("test.txt", "a"))
+ -- io.write(Current_Step," update\n")
+ -- io.close()
+   g_NpcAI_PLAYER_AI2_Step.Update[Current_Step](npc)
+   return 123
+end
+
+ChangeNpcAI_PLAYER_AI2_Step = function(npc, t_nStep)
+   GAF_ChangePlayerAIStep(g_NpcAI_PLAYER_AI2_Step, npc, t_nStep)
+   return true
+end
+
+PLAYER_AI2_LuaInit = function()
+   _ACT_PLAYER_AI2_INITIALZATION = 0
+   _ACT_PLAYER_AI2_ATTACK = 1
+   _ACT_PLAYER_AI2_NONE = 2
+   g_NpcAI_PLAYER_AI2_Step = {}
+   g_NpcAI_PLAYER_AI2_Step.Init = {}
+   g_NpcAI_PLAYER_AI2_Step.Update = {}
+   g_NpcAI_PLAYER_AI2_Step.Release = {}
+   g_NpcAI_PLAYER_AI2_Step.Init[_ACT_PLAYER_AI2_INITIALZATION] = AIStep_PLAYER_AI2_Init_Init
+   g_NpcAI_PLAYER_AI2_Step.Update[_ACT_PLAYER_AI2_INITIALZATION] = AIStep_PLAYER_AI2_Init_Update
+   g_NpcAI_PLAYER_AI2_Step.Release[_ACT_PLAYER_AI2_INITIALZATION] = AIStep_PLAYER_AI2_Init_Release
+   g_NpcAI_PLAYER_AI2_Step.Init[_ACT_PLAYER_AI2_ATTACK] = AIStep_PLAYER_AI2_Attack_Init
+   g_NpcAI_PLAYER_AI2_Step.Update[_ACT_PLAYER_AI2_ATTACK] = AIStep_PLAYER_AI2_Attack_Update
+   g_NpcAI_PLAYER_AI2_Step.Release[_ACT_PLAYER_AI2_ATTACK] = AIStep_PLAYER_AI2_Attack_Release
+   g_NpcAI_PLAYER_AI2_Step.Init[_ACT_PLAYER_AI2_NONE] = AIStep_PLAYER_AI2_None_Init
+   g_NpcAI_PLAYER_AI2_Step.Update[_ACT_PLAYER_AI2_NONE] = AIStep_PLAYER_AI2_None_Update
+   g_NpcAI_PLAYER_AI2_Step.Release[_ACT_PLAYER_AI2_NONE] = AIStep_PLAYER_AI2_None_Release
+   PLAYER_AI2_CheckLength = 400
+   Current_Step = 0
+   Current_Weapon = 0
+   Current_Mode = 0
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   return 1
+end
+
+AIStep_PLAYER_AI2_Init_Init = function(npc)
+end
+
+AIStep_PLAYER_AI2_Init_Update = function(npc)
+   ChangeNpcAI_PLAYER_AI2_Step(npc, _ACT_PLAYER_AI2_NONE)
+end
+
+AIStep_PLAYER_AI2_Init_Release = function(npc)
+end
+
+
+AIStep_PLAYER_AI2_Attack_Init = function(npc)
+   npc:SetAttackOnOff(true)
+   --npc:SetAttackEndFlg(false)
+   npc:SetEventTime()
+   
+
+end
+
+AIStep_PLAYER_AI2_Attack_Update = function(npc)
+local file = assert(loadfile("AI_Config.txt"))
+      file()
+pcall(GAF_Skill_Buff)
+
+   local cur_pos = npc:GetPos()
+  -- io.output(io.open("test.txt", "a"))
+ -- io.write(npc:GetAttackTarget()," atk target\n")
+  -- io.close()
+           if npc:GetAttackTarget() ~= 0 then
+			 if false == CheckArrvial_Not_Y(npc:GetID(), DocumentFind(npc:GetAttackTarget()):GetPos(), Range_Tolerance) then
+				npc:SetMoveType(UNIT_MOVE_EVENT_DASH)
+				npc:SetAttackOnOff(false)
+			 else
+				npc:MoveStop()
+				npc:SetAttackOnOff(true)
+			 end
+	end
+  
+
+   if npc:GetEventTime(Recv_Delay) == true and npc:GetEventTime(9999) == false then
+      npc:SetAttackOnOff(false)
+      npc:SetEventTime()
+      npc:SetAttackTarget(0)
+	  local file = assert(loadfile("AI_Config.txt"))
+      file()
+      ChangeNpcAI_PLAYER_AI2_Step(npc, _ACT_PLAYER_AI2_NONE)
+   end
+   if CheckObejctAlive(npc:GetAttackTarget()) == false then
+   npc:SetAttackTarget(0)
+   ChangeNpcAI_PLAYER_AI2_Step(npc, _ACT_PLAYER_AI2_NONE)
+   end
+   if AI_VAC_Enable == 1 then
+   DocumentFind(npc:GetAttackTarget()):SetNowPos(vector3(cur_pos.x+X_Diff,cur_pos.y+Y_Diff,cur_pos.z+Z_Diff))
+   end
+end
+
+AIStep_PLAYER_AI2_Attack_Release = function(npc)
+   npc:SetAttackOnOff(false)
+end
+
+
+AIStep_PLAYER_AI2_None_Init = function(npc)
+   npc:SetAttackOnOff(false)
+   npc:SetEventTime()
+   npc:ChangeWeapon(Default_Weapon)
+   --npc:SetMoveType(UNIT_MOVE_EVENT_DASH)
+   Current_Weapon = Default_Weapon
+   
+
+   
+   
+end
+
+AIStep_PLAYER_AI2_None_Update = function(npc)
+local file = assert(loadfile("AI_Config.txt"))
+      file()
+pcall(GAF_Skill_Buff)
+    npc:ChangeWeapon(Default_Weapon)
+    Current_Weapon = Default_Weapon
+	if t_orgpos1 ~= nil then
+		if false == CheckArrvial_Not_Y(npc:GetID(), t_orgpos1, Player_Tolerance) then
+		PlayerWarp(npc:GetID(), vector3(t_orgpos1.x,10,t_orgpos1.z), vector3(0,0,1))
+		end
+	end
+
+
+	
+	 if npc:GetEventTime(Recv_Delay) == true and npc:GetEventTime(9999) == false then
+      npc:SetAttackOnOff(false)
+      npc:SetEventTime()
+      npc:SetAttackTarget(0)
+	  local file = assert(loadfile("AI_Config.txt"))
+      file()
+   end
+
+   
+   if npc:GetAttackTarget() == 0 then
+	  --npc:MoveStop()
+      SearchLockAllyNPC(npc:GetID())
+   else
+      if CheckObejctAlive(npc:GetAttackTarget()) == false then
+		--npc:MoveStop()
+		SearchLockAllyNPC(npc:GetID())
+      end
+   end
+    if npc:GetAttackTarget() ~= 0 and CheckObejctAlive(npc:GetAttackTarget()) == true then
+         ChangeNpcAI_PLAYER_AI2_Step(npc, _ACT_PLAYER_AI2_ATTACK)
+   end
+ end
+
+AIStep_PLAYER_AI2_None_Release = function(npc)
+end

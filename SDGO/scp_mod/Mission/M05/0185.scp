@@ -1,0 +1,74 @@
+MM003_NpcAce001_Update = function(npc)
+   -- if npc:GetBadgayID() ~= 0 and npc:GetLuaStep() ~= _ACT_MM003_ACE001_TARGETDASH and npc:GetLuaStep() ~= _ACT_MM003_ACE001_ATTACK then
+      -- local str = string.format("npc %d : \179\170\187\219\179\209 %d \184\166 \197\184\176\217\192\184\183\206 \188\179\193\164", npc:GetID(), npc:GetBadgayID())
+      -- print(str)
+      -- npc:SetAttackTarget(npc:GetBadgayID())
+      -- npc:SetBadgayID(0)
+      -- ChangeNpcAI_MM003_ACE001_Step(npc, _ACT_MM003_ACE001_NONE)
+   -- end
+   g_NpcAI_MM003_ACE001_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_MM003_ACE001_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_MM003_ACE001_Step, npc, t_nStep)
+   return true
+end
+
+MM003_NpcAce001_LuaInit = function()
+   _ACT_MM003_ACE001_INITIALZATION = 0
+   -- _ACT_MM003_ACE001_NONE = 1
+   -- _ACT_MM003_ACE001_ATTACK = 2
+   -- _ACT_MM003_ACE001_MOVE = 3
+   -- _ACT_MM003_ACE001_MOVE_RETREAT = 4
+   -- _ACT_MM003_ACE001_TARGETDASH = 5
+   -- _ACT_MM003_ACE001_STAND = 6
+   -- _ACT_MM003_ACE001_RANDOMMOVE = 7
+   -- _ACT_MM003_ACE001_BACKMOVE = 8
+   g_NpcAI_MM003_ACE001_Step = {}
+   g_NpcAI_MM003_ACE001_Step.Init = {}
+   g_NpcAI_MM003_ACE001_Step.Update = {}
+   g_NpcAI_MM003_ACE001_Step.Release = {}
+   g_NpcAI_MM003_ACE001_Step.Init[_ACT_MM003_ACE001_INITIALZATION] = AIStep_MM003_ACE001_Init_Init
+   g_NpcAI_MM003_ACE001_Step.Update[_ACT_MM003_ACE001_INITIALZATION] = AIStep_MM003_ACE001_Init_Update
+   g_NpcAI_MM003_ACE001_Step.Release[_ACT_MM003_ACE001_INITIALZATION] = AIStep_MM003_ACE001_Init_Release
+   -- g_NpcAI_MM003_ACE001_Step.Init[_ACT_MM003_ACE001_MOVE] = AIStep_MM003_ACE001_Move_Init
+   -- g_NpcAI_MM003_ACE001_Step.Update[_ACT_MM003_ACE001_MOVE] = AIStep_MM003_ACE001_Move_Update
+   -- g_NpcAI_MM003_ACE001_Step.Release[_ACT_MM003_ACE001_MOVE] = AIStep_MM003_ACE001_Move_Release
+   -- g_NpcAI_MM003_ACE001_Step.Init[_ACT_MM003_ACE001_ATTACK] = AIStep_MM003_ACE001_Attack_Init
+   -- g_NpcAI_MM003_ACE001_Step.Update[_ACT_MM003_ACE001_ATTACK] = AIStep_MM003_ACE001_Attack_Update
+   -- g_NpcAI_MM003_ACE001_Step.Release[_ACT_MM003_ACE001_ATTACK] = AIStep_MM003_ACE001_Attack_Release
+   -- g_NpcAI_MM003_ACE001_Step.Init[_ACT_MM003_ACE001_NONE] = AIStep_MM003_ACE001_None_Init
+   -- g_NpcAI_MM003_ACE001_Step.Update[_ACT_MM003_ACE001_NONE] = AIStep_MM003_ACE001_None_Update
+   -- g_NpcAI_MM003_ACE001_Step.Release[_ACT_MM003_ACE001_NONE] = AIStep_MM003_ACE001_None_Release
+   -- g_NpcAI_MM003_ACE001_Step.Init[_ACT_MM003_ACE001_MOVE_RETREAT] = AIStep_MM003_ACE001_Move_Retreat_Init
+   -- g_NpcAI_MM003_ACE001_Step.Update[_ACT_MM003_ACE001_MOVE_RETREAT] = AIStep_MM003_ACE001_Move_Retreat_Update
+   -- g_NpcAI_MM003_ACE001_Step.Release[_ACT_MM003_ACE001_MOVE_RETREAT] = AIStep_MM003_ACE001_Move_Retreat_Release
+   -- g_NpcAI_MM003_ACE001_Step.Init[_ACT_MM003_ACE001_TARGETDASH] = AIStep_MM003_ACE001_TargetDash_Init
+   -- g_NpcAI_MM003_ACE001_Step.Update[_ACT_MM003_ACE001_TARGETDASH] = AIStep_MM003_ACE001_TargetDash_Update
+   -- g_NpcAI_MM003_ACE001_Step.Release[_ACT_MM003_ACE001_TARGETDASH] = AIStep_MM003_ACE001_TargetDash_Release
+   -- g_NpcAI_MM003_ACE001_Step.Init[_ACT_MM003_ACE001_STAND] = AIStep_MM003_ACE001_Stand_Init
+   -- g_NpcAI_MM003_ACE001_Step.Update[_ACT_MM003_ACE001_STAND] = AIStep_MM003_ACE001_Stand_Update
+   -- g_NpcAI_MM003_ACE001_Step.Release[_ACT_MM003_ACE001_STAND] = AIStep_MM003_ACE001_Stand_Release
+   -- g_NpcAI_MM003_ACE001_Step.Init[_ACT_MM003_ACE001_RANDOMMOVE] = AIStep_MM003_ACE001_RandomMove_Init
+   -- g_NpcAI_MM003_ACE001_Step.Update[_ACT_MM003_ACE001_RANDOMMOVE] = AIStep_MM003_ACE001_RandomMove_Update
+   -- g_NpcAI_MM003_ACE001_Step.Release[_ACT_MM003_ACE001_RANDOMMOVE] = AIStep_MM003_ACE001_RandomMove_Release
+   -- g_NpcAI_MM003_ACE001_Step.Init[_ACT_MM003_ACE001_BACKMOVE] = AIStep_MM003_ACE001_BackMove_Init
+   -- g_NpcAI_MM003_ACE001_Step.Update[_ACT_MM003_ACE001_BACKMOVE] = AIStep_MM003_ACE001_BackMove_Update
+   -- g_NpcAI_MM003_ACE001_Step.Release[_ACT_MM003_ACE001_BACKMOVE] = AIStep_MM003_ACE001_BackMove_Release
+   return 1
+end
+
+AIStep_MM003_ACE001_Init_Init = function(npc)
+end
+
+AIStep_MM003_ACE001_Init_Update = function(npc)
+   -- ChangeNpcAI_MM003_ACE001_Step(npc, _ACT_MM003_ACE001_NONE)
+   		npc:SetRoadSearchType(0)
+		npc:ReMoveObject()
+end
+
+AIStep_MM003_ACE001_Init_Release = function(npc)
+   -- npc:SetMoveBasePos(vector3(0, 0, 5000))
+   -- npc:SetMoveLength(1500)
+end

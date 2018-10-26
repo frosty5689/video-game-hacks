@@ -1,0 +1,209 @@
+Mission016_Middle01_LuaInit = function(GameMode)
+   g_GameMode_MM016_Middle01 = {}
+   g_GameMode_MM016_Middle01.Init = {}
+   g_GameMode_MM016_Middle01.Update = {}
+   g_GameMode_MM016_Middle01.Release = {}
+   g_nNowGameModeStep = 0
+   _GameMode_MM016_Middle01_Redy = GameMode:AddStepNum()
+   _GameMode_MM016_Middle01_010 = GameMode:AddStepNum()
+   _GameMode_MM016_Middle01_020 = GameMode:AddStepNum()
+   _GameMode_MM016_Middle01_030 = GameMode:AddStepNum()
+   g_GameMode_MM016_Middle01.Init[_GameMode_MM016_Middle01_Redy] = GameMode_MM016_Middle01_Ready_Init
+   g_GameMode_MM016_Middle01.Update[_GameMode_MM016_Middle01_Redy] = GameMode_MM016_Middle01_Ready_Update
+   g_GameMode_MM016_Middle01.Release[_GameMode_MM016_Middle01_Redy] = GameMode_MM016_Middle01_Ready_Release
+   g_GameMode_MM016_Middle01.Init[_GameMode_MM016_Middle01_010] = GameMode_MM016_Middle0101_Init
+   g_GameMode_MM016_Middle01.Update[_GameMode_MM016_Middle01_010] = GameMode_MM016_Middle0101_Update
+   g_GameMode_MM016_Middle01.Release[_GameMode_MM016_Middle01_010] = GameMode_MM016_Middle0101_Release
+   g_GameMode_MM016_Middle01.Init[_GameMode_MM016_Middle01_020] = GameMode_MM016_Middle0102_Init
+   g_GameMode_MM016_Middle01.Update[_GameMode_MM016_Middle01_020] = GameMode_MM016_Middle0102_Update
+   g_GameMode_MM016_Middle01.Release[_GameMode_MM016_Middle01_020] = GameMode_MM016_Middle0102_Release
+   g_GameMode_MM016_Middle01.Init[_GameMode_MM016_Middle01_030] = GameMode_MM016_Middle0103_Init
+   g_GameMode_MM016_Middle01.Update[_GameMode_MM016_Middle01_030] = GameMode_MM016_Middle0103_Update
+   g_GameMode_MM016_Middle01.Release[_GameMode_MM016_Middle01_030] = GameMode_MM016_Middle0103_Release
+   t_npc1 = nil
+   t_npc2 = nil
+   t_npc3 = nil
+   t_npc4 = nil
+   t_npc5 = nil
+   t_npc6 = nil
+   t_npc7 = nil
+   t_npc8 = nil
+   t_npc9 = nil
+   t_npc10 = nil
+      t_npc1 = GameMode:CreateNpc(3248101, vector3(-7400, 3000, 7500), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc1:SetLuaFunctionName()
+   t_npc1:SetRoadSearchType(0)
+   t_npc1:ChangeAni("boost_forward_02")
+   t_npc2 = GameMode:CreateNpc(3248105, vector3(-7480, 3030, 7360), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc2:SetLuaFunctionName()
+   t_npc2:SetRoadSearchType(0)
+   t_npc2:ChangeAni("boost_forward_02")
+   t_npc3 = GameMode:CreateNpc(3248089, vector3(-7480, 3035, 7640), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc3:SetLuaFunctionName()
+   t_npc3:SetRoadSearchType(0)
+   t_npc3:ChangeAni("boost_forward_02")
+   t_npc4 = GameMode:CreateNpc(3248089, vector3(-7570, 2985, 7220), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc4:SetLuaFunctionName()
+   t_npc4:SetRoadSearchType(0)
+   t_npc4:ChangeAni("boost_forward_02")
+   t_npc5 = GameMode:CreateNpc(3248089, vector3(-7570, 2980, 7780), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc5:SetLuaFunctionName()
+   t_npc5:SetRoadSearchType(0)
+   t_npc5:ChangeAni("boost_forward_02")
+   t_npc6 = GameMode:CreateNpc(3248101, vector3(-7400, 3000, 7500), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc6:SetLuaFunctionName()
+   t_npc6:SetRoadSearchType(0)
+   t_npc7 = GameMode:CreateNpc(3248105, vector3(-7480, 3030, 7360), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc7:SetLuaFunctionName()
+   t_npc7:SetRoadSearchType(0)
+   t_npc8 = GameMode:CreateNpc(3248089, vector3(-7480, 3035, 7640), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc8:SetLuaFunctionName()
+   t_npc8:SetRoadSearchType(0)
+   t_npc9 = GameMode:CreateNpc(3248089, vector3(-7570, 2985, 7220), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc9:SetLuaFunctionName()
+   t_npc9:SetRoadSearchType(0)
+   t_npc10 = GameMode:CreateNpc(3248089, vector3(-7570, 2980, 7780), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc10:SetLuaFunctionName()
+   t_npc10:SetRoadSearchType(0)
+   
+   if t_npc1 ~= nil then
+      t_npc1:ReMoveObject()
+   end
+   if t_npc2 ~= nil then
+      t_npc2:ReMoveObject()
+   end
+   if t_npc3 ~= nil then
+      t_npc3:ReMoveObject()
+   end
+   if t_npc4 ~= nil then
+      t_npc4:ReMoveObject()
+   end
+   if t_npc5 ~= nil then
+      t_npc5:ReMoveObject()
+   end
+   if t_npc6 ~= nil then
+      t_npc6:ReMoveObject()
+   end
+   if t_npc7 ~= nil then
+      t_npc7:ReMoveObject()
+   end
+   if t_npc8 ~= nil then
+      t_npc8:ReMoveObject()
+   end
+   if t_npc9 ~= nil then
+      t_npc9:ReMoveObject()
+   end
+   if t_npc10 ~= nil then
+      t_npc10:ReMoveObject()
+   end
+   
+   
+   ChangeGameModeStep(GameMode, _GameMode_MM016_Middle01_030, g_GameMode_MM016_Middle01)
+   return 1
+end
+
+Mission016_Middle01_Skip = function(GameMode)
+   if t_npc1 ~= nil then
+      t_npc1:ReMoveObject()
+   end
+   if t_npc2 ~= nil then
+      t_npc2:ReMoveObject()
+   end
+   if t_npc3 ~= nil then
+      t_npc3:ReMoveObject()
+   end
+   if t_npc4 ~= nil then
+      t_npc4:ReMoveObject()
+   end
+   if t_npc5 ~= nil then
+      t_npc5:ReMoveObject()
+   end
+   if t_npc6 ~= nil then
+      t_npc6:ReMoveObject()
+   end
+   if t_npc7 ~= nil then
+      t_npc7:ReMoveObject()
+   end
+   if t_npc8 ~= nil then
+      t_npc8:ReMoveObject()
+   end
+   if t_npc9 ~= nil then
+      t_npc9:ReMoveObject()
+   end
+   if t_npc10 ~= nil then
+      t_npc10:ReMoveObject()
+   end
+   GameMode:DemoEnd()
+   GameMode:ChangeGameCamera()
+   return 456
+end
+
+Mission016_Middle01_Update = function(GameMode)
+   g_nNowGameModeStep = GameMode:GetStep()
+   local Result = g_GameMode_MM016_Middle01.Update[g_nNowGameModeStep](GameMode)
+   print(Result)
+   return Result
+end
+
+GameMode_MM016_Middle01_Ready_Init = function(GameMode)
+end
+
+GameMode_MM016_Middle01_Ready_Update = function(GameMode)
+end
+
+GameMode_MM016_Middle01_Ready_Release = function(GameMode)
+end
+
+GameMode_MM016_Middle0101_Init = function(GameMode)
+   GameMode:DemoPlay()
+   GameMode:ChangeMoveCamera()
+   --Mission016_Middle01_Skip(GameMode)
+   t_npc1 = GameMode:CreateNpc(3248101, vector3(-7400, 3000, 7500), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc1:SetLuaFunctionName()
+   t_npc1:SetRoadSearchType(0)
+   t_npc1:ChangeAni("boost_forward_02")
+   t_npc2 = GameMode:CreateNpc(3248105, vector3(-7480, 3030, 7360), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc2:SetLuaFunctionName()
+   t_npc2:SetRoadSearchType(0)
+   t_npc2:ChangeAni("boost_forward_02")
+   t_npc3 = GameMode:CreateNpc(3248089, vector3(-7480, 3035, 7640), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc3:SetLuaFunctionName()
+   t_npc3:SetRoadSearchType(0)
+   t_npc3:ChangeAni("boost_forward_02")
+   t_npc4 = GameMode:CreateNpc(3248089, vector3(-7570, 2985, 7220), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc4:SetLuaFunctionName()
+   t_npc4:SetRoadSearchType(0)
+   t_npc4:ChangeAni("boost_forward_02")
+   t_npc5 = GameMode:CreateNpc(3248089, vector3(-7570, 2980, 7780), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc5:SetLuaFunctionName()
+   t_npc5:SetRoadSearchType(0)
+   t_npc5:ChangeAni("boost_forward_02")
+   t_npc6 = GameMode:CreateNpc(3248101, vector3(-7400, 3000, 7500), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc6:SetLuaFunctionName()
+   t_npc6:SetRoadSearchType(0)
+   t_npc7 = GameMode:CreateNpc(3248105, vector3(-7480, 3030, 7360), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc7:SetLuaFunctionName()
+   t_npc7:SetRoadSearchType(0)
+   t_npc8 = GameMode:CreateNpc(3248089, vector3(-7480, 3035, 7640), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc8:SetLuaFunctionName()
+   t_npc8:SetRoadSearchType(0)
+   t_npc9 = GameMode:CreateNpc(3248089, vector3(-7570, 2985, 7220), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc9:SetLuaFunctionName()
+   t_npc9:SetRoadSearchType(0)
+   t_npc10 = GameMode:CreateNpc(3248089, vector3(-7570, 2980, 7780), OBJECT_TEAM_BLUE, vector3(1, 0, 0))
+   t_npc10:SetLuaFunctionName()
+   t_npc10:SetRoadSearchType(0)
+   HideObject(t_npc6:GetID())
+   HideObject(t_npc7:GetID())
+   HideObject(t_npc8:GetID())
+   HideObject(t_npc9:GetID())
+   HideObject(t_npc10:GetID())
+   local t_Camera = GameMode:GetMoveCamera()
+   t_Camera:SetCameraPos(vector3(-4600, 3400, 7100))
+   t_Camera:MoveCameraPosOnly(vector3(-6740, 3200, 7180), 1)
+   t_Camera:SetEyePoint(vector3(-7400, 3050, 7500))
+   t_Camera:MoveEyePoiont(vector3(-7440, 3050, 7480), 1)
+   GameMode:SetCheckTime()
+end
+
+

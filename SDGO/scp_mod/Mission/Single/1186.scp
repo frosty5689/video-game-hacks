@@ -1,0 +1,31 @@
+SM02_Infighter_01_PB_Update = function(npc)
+   g_NpcAI_SM02_IF01PB_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_SM02_IF01PB_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_SM02_IF01PB_Step, npc, t_nStep)
+   return true
+end
+
+SM02_Infighter_01_PB_LuaInit = function()
+   _ACT_SM02_IF01PB_INITIALZATION = 0
+   g_NpcAI_SM02_IF01PB_Step = {}
+   g_NpcAI_SM02_IF01PB_Step.Init = {}
+   g_NpcAI_SM02_IF01PB_Step.Update = {}
+   g_NpcAI_SM02_IF01PB_Step.Release = {}
+   g_NpcAI_SM02_IF01PB_Step.Init[_ACT_SM02_IF01PB_INITIALZATION] = AIStep_SM02_IF01PB_Init_Init
+   g_NpcAI_SM02_IF01PB_Step.Update[_ACT_SM02_IF01PB_INITIALZATION] = AIStep_SM02_IF01PB_Init_Update
+   g_NpcAI_SM02_IF01PB_Step.Release[_ACT_SM02_IF01PB_INITIALZATION] = AIStep_SM02_IF01PB_Init_Release
+   return 1
+end
+
+AIStep_SM02_IF01PB_Init_Init = function(npc)
+end
+
+AIStep_SM02_IF01PB_Init_Update = function(npc)
+   npc:SetLuaFunctionName("VAC001_SmallMob")
+end
+
+AIStep_SM02_IF01PB_Init_Release = function(npc)
+end

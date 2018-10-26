@@ -1,0 +1,123 @@
+-- 默认武器 1w = 0, 2w = 1, 3w = 2
+-- X_Diff, Y_Diff, Z_Diff 是相对坐标（根据玩家机体位置）
+-- 只是正负，建议只调节Z_Diff因为怪物都是面向Z+的方向所以正的Z_Diff
+-- 最合适刷四叶草。 根据武器距离适当调节Z_Diff就好，近战建议是50左右
+-- Z_Diff高的话适当调节Y_DIff50-125左右。 就可以达到了（导弹不需要）
+-- X_Range1, X_Range2, Z_Range1, Z_Range2 是控制随机X，Z坐标的相对值
+-- Range_Tolerance 控制玩家离怪物多远会自动吸过来（跟锁敌吸无关）， Player_Tolerance 控制玩家离固定位置多远会吸回去
+
+AI_Enable = 1
+AI_Player = 1
+
+AI_Attack = 1
+AI_VAC_Enable = 1
+
+Default_Weapon = 1
+X_Diff = 0
+Y_Diff = 200
+Z_Diff = 500
+Range_Tolerance = 1400
+Player_Tolerance = 100
+Recv_Delay = 1
+
+Player_Script = 1
+Player_Detect_Range = 1500
+Player_Buff = 1
+
+Player_Buff_List = {3473001, 3473002, 3473003, 3473004, 3473006, 3473007, 3473008, 3473009, 3473011, 3473012, 3473013, 3473016, 3473018, 3473019, 3473020, 3473022, 3473023, 3473024, 3473026, 3473027, 3473028,
+		3220007, 3220008, 3220010, 3220011, 3220012, 3220013, 3220015, 3220018, 3220019, 3220020, 3220021, 3220022, 3220023, 3220024, 3220025, 3220026,
+		3558001, 3558003, 3558004, 3558005, 3558006, 3558016,
+		3558017, 3558018, 3558019, 3473025,
+		3220014}
+		
+Player_Buff_List_ = {3558001, 3220007, 3220008, 3220010, 3220019, 3473001, 3473002, 3473006, 3473007, 3473011, 3473012, 3473013, 3473028, 3558016,
+3473008}
+
+--3220014
+Player_Unlimited_Ammo = 1
+Player_Unlimited_Boost = 1
+Player_Snipe_Critical = 1
+
+NPC_DebuffOnOff = 0
+NPC_Debuff1 = 1
+NPC_Debuff2 = 1
+
+Skip_Movie = 1
+
+Single_Mod = 1
+M05_Mod = 1
+M16_Mod = 1
+
+M16_Boss_MinHp_Factor = 0.4
+M16_Wait_Time = 66
+
+Start_ID = 16777000
+End_ID = 16778000
+-- Small
+X_SM_Range1 = -50
+X_SM_Range2 = 50
+Z_SM_Range1 = 800
+Z_SM_Range2 = 800
+Y_SM_Cord = 200
+
+-- Medium
+X_MM_Range1 = -50
+X_MM_Range2 = 50
+Z_MM_Range1 = 1000
+Z_MM_Range2 = 1000
+Y_MM_Cord = 225
+
+-- Big
+X_BM_Range1 = -50
+X_BM_Range2 = 50
+Z_BM_Range1 = 700
+Z_BM_Range2 = 900
+Y_BM_Range1 = 0
+Y_BM_Range2 = 200
+
+-- Useless
+X_UM_Range1 = -10000
+X_UM_Range2 = -10000
+Z_UM_Range1 = 10000
+Z_UM_Range2 = 11000
+Y_UM_Cord = 200
+
+-- Boss
+X_Boss_Range1 = -50
+X_Boss_Range2 = 50
+Z_Boss_Range1 = 1200
+Z_Boss_Range2 = 1200
+Y_Boss_Cord = 235
+
+-- VSAI
+X_VSAI_Diff = 0
+Z_VSAI_Diff = 400
+Y_VSAI_Cord = 0
+
+-- Laoho
+ONE_LAOHO_X_DIFF = 125
+ONE_LAOHO_Y = 0
+ONE_LAOHO_Z_DIFF = 500
+-- Laoho2
+TWO_LAOHO_X_DIFF = 125
+TWO_LAOHO_Y = 125
+TWO_LAOHO_Z_DIFF = 500
+-- Laoho3
+THREE_LAOHO_X_DIFF = 0
+THREE_LAOHO_Y = 0
+THREE_LAOHO_Z_DIFF = 500
+-- Laoho4
+FOUR_LAOHO_X_DIFF = 0
+FOUR_LAOHO_Y = 125
+FOUR_LAOHO_Z_DIFF = 500
+-- Laoho5
+FIVE_LAOHO_X_DIFF = 250
+FIVE_LAOHO_Y = 0
+FIVE_LAOHO_Z_DIFF = 500
+-- Laoho6
+SIX_LAOHO_X_DIFF = 250
+SIX_LAOHO_Y = 125
+SIX_LAOHO_Z_DIFF = 500
+
+TURN_ANGLE = vector3(0,5000,0)
+TURN_TIMES = 1

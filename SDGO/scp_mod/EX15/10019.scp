@@ -1,0 +1,70 @@
+MM007_NpcGunfighter001_Update = function(npc)
+   g_NpcAI_MM007_GF001_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_MM007_GF001_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_MM007_GF001_Step, npc, t_nStep)
+   return true
+end
+
+MM007_NpcGunfighter001_LuaInit = function()
+   _ACT_MM007_GF001_INITIALZATION = 0
+   g_NpcAI_MM007_GF001_Step = {}
+   g_NpcAI_MM007_GF001_Step.Init = {}
+   g_NpcAI_MM007_GF001_Step.Update = {}
+   g_NpcAI_MM007_GF001_Step.Release = {}
+   g_NpcAI_MM007_GF001_Step.Init[_ACT_MM007_GF001_INITIALZATION] = AIStep_MM007_GF001_Init_Init
+   g_NpcAI_MM007_GF001_Step.Update[_ACT_MM007_GF001_INITIALZATION] = AIStep_MM007_GF001_Init_Update
+   g_NpcAI_MM007_GF001_Step.Release[_ACT_MM007_GF001_INITIALZATION] = AIStep_MM007_GF001_Init_Release
+   return 1
+end
+
+AIStep_MM007_GF001_Init_Init = function(npc)
+end
+
+AIStep_MM007_GF001_Init_Update = function(npc)
+
+	--local taozi = 0
+	--local sergei = 0
+	local kyrios = 0
+	--taozi = SearchNpc(3248616)
+	--sergei = SearchNpc(3248617)
+
+if kyrios == 0 then
+	kyrios = SearchNpc(3248092)
+end
+
+if kyrios == 0 then
+	kyrios = SearchNpc(3248207)
+end
+
+if kyrios == 0 then
+	kyrios = SearchNpc(3248407)
+end
+
+if kyrios == 0 then
+	kyrios = SearchNpc(3248607)
+end	
+
+--3248102 - easy sector 2
+--3248105 - easy sector 3,4
+
+--3248217 - normal sector 2
+--3248220 - normal sector 3,4
+
+--3248417 - hard sector 2
+--3248420 - hard sector 3,4
+
+--3248617 - expert sector 2
+--3248620 - expert sector 3,4
+if npc:GetNPCID() ~= 3248092 and npc:GetNPCID() ~= 3248207 and npc:GetNPCID() ~= 3248407 and npc:GetNPCID() ~= 3248607 then
+	-- if npc:GetNPCID() == 3248102 or npc:GetNPCID() == 3248217 or npc:GetNPCID() == 3248417 or npc:GetNPCID() == 3248617 then
+       -- npc:SetLuaFunctionName("VAC003_MediumMob")
+	-- else
+		npc:SetLuaFunctionName("VAC003_MediumMob")
+   end
+end
+
+AIStep_MM007_GF001_Init_Release = function(npc)
+end

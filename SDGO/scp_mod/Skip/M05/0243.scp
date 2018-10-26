@@ -1,0 +1,35 @@
+Mission005_Start_LuaInit = function(GameMode)
+   g_GameMode_MM005_Start = {}
+   g_GameMode_MM005_Start.Init = {}
+   g_GameMode_MM005_Start.Update = {}
+   g_GameMode_MM005_Start.Release = {}
+   g_nNowGameModeStep = 0
+   _GameMode_MM005_START_Redy = GameMode:AddStepNum()
+   _GameMode_MM005_START_010 = GameMode:AddStepNum()
+   _GameMode_MM005_START_020 = GameMode:AddStepNum()
+   _GameMode_MM005_START_030 = GameMode:AddStepNum()
+   _GameMode_MM005_START_040 = GameMode:AddStepNum()
+   g_GameMode_MM005_Start.Init[_GameMode_MM005_START_Redy] = GameMode_MM005_START_Ready_Init
+   g_GameMode_MM005_Start.Update[_GameMode_MM005_START_Redy] = GameMode_MM005_START_Ready_Update
+   g_GameMode_MM005_Start.Release[_GameMode_MM005_START_Redy] = GameMode_MM005_START_Ready_Release
+   g_GameMode_MM005_Start.Init[_GameMode_MM005_START_010] = GameMode_MM005_START01_Init
+   g_GameMode_MM005_Start.Update[_GameMode_MM005_START_010] = GameMode_MM005_START01_Update
+   g_GameMode_MM005_Start.Release[_GameMode_MM005_START_010] = GameMode_MM005_START01_Release
+   g_GameMode_MM005_Start.Init[_GameMode_MM005_START_020] = GameMode_MM005_START02_Init
+   g_GameMode_MM005_Start.Update[_GameMode_MM005_START_020] = GameMode_MM005_START02_Update
+   g_GameMode_MM005_Start.Release[_GameMode_MM005_START_020] = GameMode_MM005_START02_Release
+   g_GameMode_MM005_Start.Init[_GameMode_MM005_START_030] = GameMode_MM005_START03_Init
+   g_GameMode_MM005_Start.Update[_GameMode_MM005_START_030] = GameMode_MM005_START03_Update
+   g_GameMode_MM005_Start.Release[_GameMode_MM005_START_030] = GameMode_MM005_START03_Release
+   g_GameMode_MM005_Start.Init[_GameMode_MM005_START_040] = GameMode_MM005_START04_Init
+   g_GameMode_MM005_Start.Update[_GameMode_MM005_START_040] = GameMode_MM005_START04_Update
+   g_GameMode_MM005_Start.Release[_GameMode_MM005_START_040] = GameMode_MM005_START04_Release
+   ChangeGameModeStep(GameMode, _GameMode_MM005_START_040, g_GameMode_MM005_Start)
+   return 1
+end
+
+GameMode_MM005_START04_Update = function(GameMode)
+   GameMode:DemoEnd()
+   GameMode:ChangeGameCamera()
+   return 456
+end

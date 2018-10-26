@@ -1,0 +1,462 @@
+Player_AI2_Update = function(npc)
+   g_NpcAI_Player_AI2_Step.Update[Current_Step](npc)
+   return 123
+end
+
+ChangeNpcAI_Player_AI2_Step = function(npc, t_nStep)
+   GAF_ChangePlayerAIStep(g_NpcAI_Player_AI2_Step, npc, t_nStep)
+   return true
+end
+
+Player_AI2_LuaInit = function()
+   _ACT_Player_AI2_INITIALZATION = 0
+   _ACT_Player_AI2_MOVE = 1
+   _ACT_Player_AI2_ATTACK = 2
+   _ACT_Player_AI2_NONE = 3
+   _ACT_Player_AI2_MOVE_TARGETPOS = 4
+   _ACT_Player_AI2_RETREAT = 5
+   _ACT_Player_AI2_RANDOMMOVE = 6
+   _ACT_Player_AI2_STAND = 7
+   _ACT_Player_AI2_RETREATATTACK = 8
+   _ACT_Player_AI2_MOVINGATTACK = 9
+   _ACT_Player_AI2_JUMPATTACK = 10
+   g_NpcAI_Player_AI2_Step = {}
+   g_NpcAI_Player_AI2_Step.Init = {}
+   g_NpcAI_Player_AI2_Step.Update = {}
+   g_NpcAI_Player_AI2_Step.Release = {}
+   g_NpcAI_Player_AI2_Step.Init[_ACT_Player_AI2_INITIALZATION] = AIStep_Player_AI2_Init_Init
+   g_NpcAI_Player_AI2_Step.Update[_ACT_Player_AI2_INITIALZATION] = AIStep_Player_AI2_Init_Update
+   g_NpcAI_Player_AI2_Step.Release[_ACT_Player_AI2_INITIALZATION] = AIStep_Player_AI2_Init_Release
+   g_NpcAI_Player_AI2_Step.Init[_ACT_Player_AI2_MOVE] = AIStep_Player_AI2_Move_Init
+   g_NpcAI_Player_AI2_Step.Update[_ACT_Player_AI2_MOVE] = AIStep_Player_AI2_Move_Update
+   g_NpcAI_Player_AI2_Step.Release[_ACT_Player_AI2_MOVE] = AIStep_Player_AI2_Move_Release
+   g_NpcAI_Player_AI2_Step.Init[_ACT_Player_AI2_ATTACK] = AIStep_Player_AI2_Attack_Init
+   g_NpcAI_Player_AI2_Step.Update[_ACT_Player_AI2_ATTACK] = AIStep_Player_AI2_Attack_Update
+   g_NpcAI_Player_AI2_Step.Release[_ACT_Player_AI2_ATTACK] = AIStep_Player_AI2_Attack_Release
+   g_NpcAI_Player_AI2_Step.Init[_ACT_Player_AI2_NONE] = AIStep_Player_AI2_None_Init
+   g_NpcAI_Player_AI2_Step.Update[_ACT_Player_AI2_NONE] = AIStep_Player_AI2_None_Update
+   g_NpcAI_Player_AI2_Step.Release[_ACT_Player_AI2_NONE] = AIStep_Player_AI2_None_Release
+   g_NpcAI_Player_AI2_Step.Init[_ACT_Player_AI2_MOVE_TARGETPOS] = AIStep_Player_AI2_Move_TargetPos_Init
+   g_NpcAI_Player_AI2_Step.Update[_ACT_Player_AI2_MOVE_TARGETPOS] = AIStep_Player_AI2_Move_TargetPos_Update
+   g_NpcAI_Player_AI2_Step.Release[_ACT_Player_AI2_MOVE_TARGETPOS] = AIStep_Player_AI2_Move_TargetPos_Release
+   g_NpcAI_Player_AI2_Step.Init[_ACT_Player_AI2_RETREAT] = AIStep_Player_AI2_Retreat_Init
+   g_NpcAI_Player_AI2_Step.Update[_ACT_Player_AI2_RETREAT] = AIStep_Player_AI2_Retreat_Update
+   g_NpcAI_Player_AI2_Step.Release[_ACT_Player_AI2_RETREAT] = AIStep_Player_AI2_Retreat_Release
+   g_NpcAI_Player_AI2_Step.Init[_ACT_Player_AI2_RANDOMMOVE] = AIStep_Player_AI2_RandomMove_Init
+   g_NpcAI_Player_AI2_Step.Update[_ACT_Player_AI2_RANDOMMOVE] = AIStep_Player_AI2_RandomMove_Update
+   g_NpcAI_Player_AI2_Step.Release[_ACT_Player_AI2_RANDOMMOVE] = AIStep_Player_AI2_RandomMove_Release
+   g_NpcAI_Player_AI2_Step.Init[_ACT_Player_AI2_STAND] = AIStep_Player_AI2_Stand_Init
+   g_NpcAI_Player_AI2_Step.Update[_ACT_Player_AI2_STAND] = AIStep_Player_AI2_Stand_Update
+   g_NpcAI_Player_AI2_Step.Release[_ACT_Player_AI2_STAND] = AIStep_Player_AI2_Stand_Release
+   g_NpcAI_Player_AI2_Step.Init[_ACT_Player_AI2_RETREATATTACK] = AIStep_Player_AI2_RetreatAttack_Init
+   g_NpcAI_Player_AI2_Step.Update[_ACT_Player_AI2_RETREATATTACK] = AIStep_Player_AI2_RetreatAttack_Update
+   g_NpcAI_Player_AI2_Step.Release[_ACT_Player_AI2_RETREATATTACK] = AIStep_Player_AI2_RetreatAttack_Release
+   g_NpcAI_Player_AI2_Step.Init[_ACT_Player_AI2_MOVINGATTACK] = AIStep_Player_AI2_MovingAttack_Init
+   g_NpcAI_Player_AI2_Step.Update[_ACT_Player_AI2_MOVINGATTACK] = AIStep_Player_AI2_MovingAttack_Update
+   g_NpcAI_Player_AI2_Step.Release[_ACT_Player_AI2_MOVINGATTACK] = AIStep_Player_AI2_MovingAttack_Release
+   g_NpcAI_Player_AI2_Step.Init[_ACT_Player_AI2_JUMPATTACK] = AIStep_Player_AI2_JumpAttack_Init
+   g_NpcAI_Player_AI2_Step.Update[_ACT_Player_AI2_JUMPATTACK] = AIStep_Player_AI2_JumpAttack_Update
+   g_NpcAI_Player_AI2_Step.Release[_ACT_Player_AI2_JUMPATTACK] = AIStep_Player_AI2_JumpAttack_Release
+   Player_AI2_CheckLength = 0
+   Player_AI2_CurrentWeapon = 0
+   Current_Step = 0
+   return 1
+end
+
+AIStep_Player_AI2_Init_Init = function(npc)
+	ScriptLog("Init_Init")
+   --npc:SetTerrainRectOnOff(true)
+   --npc:InitTerrainRect(-100)
+end
+
+AIStep_Player_AI2_Init_Update = function(npc)
+ScriptLog("Init_Update")
+   ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+end
+
+AIStep_Player_AI2_Init_Release = function(npc)
+ScriptLog("Init_Release")
+   --npc:SetTerrainRectOnOff(true)
+end
+
+AIStep_Player_AI2_Move_Init = function(npc)
+   --npc:SetBoostGauge(5000)
+   npc:SetMoveType(UNIT_MOVE_EVENT_DASH)
+   --npc:InitAccDamage()
+   Player_AI2_CheckLength = 1000 + RandomValue(5) * 200
+   npc:SetEventTime()
+end
+
+AIStep_Player_AI2_Move_Update = function(npc)
+   GAF_FindTarget(npc)
+   -- if npc:CheckAccDamage(500) == true then
+      -- npc:QuickDash(0)
+      -- npc:InitAccDamage()
+   -- end
+   if npc:CheckInAttackLength(npc:GetAttackTarget()) == CheckArrvial_Not_Y(npc:GetID(), npc:GetMoveTargetPos(), Player_AI2_CheckLength) ~= true then
+      print("\192\251 \185\223\176\223 \185\223\176\223!!!")
+      ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+   else
+      -- if npc:CheckMove() == false then
+         -- print("AIGF_\192\251 \185\204\185\223\176\223!!!")
+         -- ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+      -- else
+         if npc:GetEventTime(5) == true then
+            print("\189\195\176\163\195\202\176\250!")
+            ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+         end
+      -- end
+   end
+end
+
+AIStep_Player_AI2_Move_Release = function(npc)
+   npc:SetMoveType(UNIT_MOVE_EVENT_MOVE)
+   npc:MoveStop()
+end
+
+AIStep_Player_AI2_Attack_Init = function(npc)
+   npc:SetAttackOnOff(true)
+   npc:SetMoveType(UNIT_MOVE_EVENT_MOVE)
+   -- npc:ShakeMoveOnOff(true)
+   npc:SetEventTime()
+   -- if npc:CheckBulletNum(UNIT_WEAPON_CHANGE_SECOND) == RandomValue(3) ~= 1 then
+      npc:ChangeWeapon(UNIT_WEAPON_CHANGE_SECOND)
+      Player_AI2_CurrentWeapon = UNIT_WEAPON_CHANGE_SECOND
+   -- else
+      -- npc:ChangeWeapon(UNIT_WEAPON_CHANGE_THIRD)
+      -- Player_AI2_CurrentWeapon = UNIT_WEAPON_CHANGE_THIRD
+      -- do break end
+      -- if npc:CheckBulletNum(UNIT_WEAPON_CHANGE_THIRD) == true then
+         -- npc:ChangeWeapon(UNIT_WEAPON_CHANGE_THIRD)
+         -- Player_AI2_CurrentWeapon = UNIT_WEAPON_CHANGE_THIRD
+      -- else
+         -- npc:ChangeWeapon(UNIT_WEAPON_CHANGE_SECOND)
+         -- Player_AI2_CurrentWeapon = UNIT_WEAPON_CHANGE_SECOND
+      -- end
+   -- end
+end
+
+AIStep_Player_AI2_Attack_Update = function(npc)
+   -- local T = npc:RangedAttackTest(npc:GetAttackTarget())
+   -- local M = npc:MeleeAttackTest(npc:GetAttackTarget())
+   -- local P = npc:PerceiveEnemy(600)
+   -- if npc:CheckBulletNum(Player_AI2_CurrentWeapon) == false then
+      -- ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+   -- end
+   -- if npc:CheckHurt() == true or P ~= 0 then
+      -- if P ~= 0 then
+         -- npc:SetAttackTarget(P)
+      -- end
+      -- if RandomValue(3) == 1 then
+         -- ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_RETREATATTACK)
+      -- else
+         -- ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_MOVINGATTACK)
+      -- end
+   -- else
+      if npc:GetEventTime(3) == CheckObejctAlive(npc:GetAttackTarget()) == false then
+         ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+         print("\197\184\176\217\198\196\177\171")
+      else
+         if npc:CheckInAttackLength(npc:GetAttackTarget())  ~= false then
+            npc:SetMoveTargetPos(DocumentFind(npc:GetAttackTarget()):GetPos())
+            ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_MOVE)
+            print("\192\175\180\214\192\187 \195\223\176\221")
+         else
+            if npc:CheckInAttackLength(npc:GetAttackTarget())  ~= false then
+               print("\191\248\176\197\184\174\197\184\176\221 \200\174\186\184")
+               npc:SetMoveShotPos(DocumentFind(npc:GetAttackTarget()):GetPos())
+               ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_MOVE_TARGETPOS)
+            end
+         end
+      end
+   -- end
+end
+
+AIStep_Player_AI2_Attack_Release = function(npc)
+   npc:SetAttackOnOff(false)
+   --npc:ShakeMoveOnOff(false)
+end
+
+AIStep_Player_AI2_None_Init = function(npc)
+ScriptLog("None_Init")
+   npc:SetAttackOnOff(false)
+   --npc:SetAttackEndFlg(false)
+   npc:ClearActEvent()
+   npc:ChangeWeapon(UNIT_WEAPON_CHANGE_SECOND)
+   --npc:InitTimeCount()
+   npc:SetEventTime()
+end
+
+AIStep_Player_AI2_None_Update = function(npc)
+ScriptLog("None_Update")
+   GAF_FindTarget(npc)
+   if npc:GetAttackTarget() ~= 0 then
+      print(npc:GetAttackTarget())
+      local L = npc:GetUnitLength(npc:GetAttackTarget())
+      -- if L < 300 then
+         -- ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_RETREATATTACK)
+      -- else
+         if npc:CheckInAttackLength(npc:GetAttackTarget()) ~= true then
+            print("AIGF \176\248\176\221")
+            npc:MoveStop()
+            local AttackType = RandomValue(5)
+            if AttackType > 3 then
+               ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_MOVINGATTACK)
+            elseif AttackType == 0 then
+               ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_JUMPATTACK)
+            else
+               ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_ATTACK)
+            end
+         else
+            if npc:CheckInAttackLength(npc:GetAttackTarget()) ~= true then
+               print("npc:SetMoveTargetPos")
+               npc:SetMoveTargetPos(DocumentFind(npc:GetAttackTarget()):GetPos())
+               ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_MOVE_TARGETPOS)
+            else
+               print("npc:SetMoveTargetPos")
+               npc:SetMoveTargetPos(DocumentFind(npc:GetAttackTarget()):GetPos())
+               ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_MOVE)
+            end
+         else
+            local target = OurTeamTargetSearch(npc)
+            if target ~= 0 then
+               GAF_TargetLost_070822(npc, DocumentFind(target):GetPos())
+            else
+               local str = string.format("%s %d %s", "Npc", npc:GetID(), "GF01 \183\163\180\253\199\207\176\212 \192\204\181\191")
+               print(str)
+               print("RandomMove")
+               npc:ClearActEvent()
+               npc:SetMoveTargetPosRandom()
+            end
+            ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_RANDOMMOVE)
+         end
+      -- end
+   end
+end
+end
+
+AIStep_Player_AI2_None_Release = function(npc)
+end
+
+AIStep_Player_AI2_Move_TargetPos_Init = function(npc)
+  -- npc:SetBoostGauge(5000)
+   npc:SetMoveType(UNIT_MOVE_EVENT_DASH)
+   npc:SetEventTime()
+end
+
+AIStep_Player_AI2_Move_TargetPos_Update = function(npc)
+   if npc:GetEventTime(7) == false then
+      ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+   else
+      -- if npc:CheckHurt() == true then
+         -- ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+      -- else
+         if npc:CheckInAttackLength(npc:GetAttackTarget()) ~= true then
+            ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+         end
+      -- end
+   end
+end
+
+AIStep_Player_AI2_Move_TargetPos_Release = function(npc)
+end
+
+AIStep_Player_AI2_Retreat_Init = function(npc)
+   local EID = npc:GetAttackTarget()
+   npc:ClearActEvent()
+   -- if EID ~= 0 then
+      -- print("\192\251\192\187 \199\199\199\216 \181\181\184\193")
+      -- print("\192\251\192\187 \199\199\199\216 \181\181\184\193 \192\206\192\218\176\170 ")
+      -- npc:SetMoveTargetPos(npc:SearchSafetyArea(EID))
+   -- else
+      print("\183\163\180\253\192\184\183\206 \181\181\184\193")
+      npc:SetMoveTargetPosRandom()
+   -- end
+   -- npc:SetBoostGauge(5000)
+   npc:SetMoveType(UNIT_MOVE_EVENT_DASH)
+   -- npc:InitAccDamage()
+end
+
+AIStep_Player_AI2_Retreat_Update = function(npc)
+   -- if npc:CheckAccDamage(500) == true then
+      -- npc:InitAccDamage()
+      -- ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_RETREATATTACK)
+   -- else
+      -- if npc:CheckMove() == false then
+         ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+      -- end
+   -- end
+end
+
+AIStep_Player_AI2_Retreat_Release = function(npc)
+end
+
+AIStep_Player_AI2_RandomMove_Init = function(npc)
+   AIStep_Player_AI2_Move_Init(npc)
+   -- npc:InitAccDamage()
+end
+
+AIStep_Player_AI2_RandomMove_Update = function(npc)
+   local angle = nil
+   if RandomValue(2) == 1 then
+      angle = 180
+   else
+      angle = -180
+   end
+   -- if npc:CheckAccDamage(500) == true then
+      -- npc:InitAccDamage()
+      -- npc:SetRotation_Y_Angle(angle, 1)
+      -- npc:QuickDash(RandomValue(2))
+   -- end
+   if SearchLockPlayer(npc:GetID()) == true then
+      print("\192\251\185\223\176\223\192\211\192\184\183\206 \193\164\193\246\183\206 \192\204\181\191")
+      npc:MoveStop()
+      ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+   else
+      -- if npc:CheckMove() == false then
+         ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_STAND)
+      -- end
+   end
+end
+
+AIStep_Player_AI2_RandomMove_Release = function(npc)
+   AIStep_Player_AI2_Move_Release(npc)
+end
+
+AIStep_Player_AI2_Stand_Init = function(npc)
+   npc:MoveStop()
+   -- npc:InitTimeCount()
+end
+
+AIStep_Player_AI2_Stand_Update = function(npc)
+   -- if npc:CheckTimeCount(3) then
+      print("\180\235\177\226\187\243\197\194 \193\190\183\225-> \180\235\177\226\189\195\176\163\192\187 \195\202\176\250 \199\207\191\180\192\189")
+      ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+   -- end
+end
+
+AIStep_Player_AI2_Stand_Release = function(npc)
+   -- npc:InitTimeCount()
+   npc:RotationStop()
+end
+
+AIStep_Player_AI2_RetreatAttack_Init = function(npc)
+   local EID = npc:GetAttackTarget()
+   npc:ClearActEvent()
+   npc:SetMoveTargetPos_Dir(UNIT_MOVE_DIR_BACKWARD, 1000, UNIT_MOVE_DIR_BACKWARD, false)
+   npc:SetAttackTarget(EID)
+   -- npc:SetBoostGauge(5000)
+   npc:SetMoveType(UNIT_MOVE_EVENT_DASH)
+   npc:SetJumpTime(1)
+   npc:ChangeWeapon(UNIT_WEAPON_CHANGE_SECOND)
+   npc:SetAttackOnOff(true)
+   npc:SetEventTime()
+   -- npc:InitAccDamage()
+end
+
+AIStep_Player_AI2_RetreatAttack_Update = function(npc)
+   -- if npc:CheckAccDamage(500) == true then
+      -- npc:InitAccDamage()
+      -- ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_MOVINGATTACK)
+   -- else
+      if npc:CheckInAttackLength(npc:GetAttackTarget()) == CheckObejctAlive(npc:GetAttackTarget()) == false then
+         ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+         print("Mode001_AI002 CheckObejctAlive(npc:GetAttackTarget()) == false")
+      else
+         if npc:GetEventTime(3) == false then
+            ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+         end
+      end
+   end
+end
+
+AIStep_Player_AI2_RetreatAttack_Release = function(npc)
+   npc:SetAttackOnOff(false)
+end
+
+AIStep_Player_AI2_MovingAttack_Init = function(npc)
+   local aid = npc:GetAttackTarget()
+   if SearchLockPlayer(npc:GetID()) == false then
+      npc:SetAttackTarget(aid)
+   end
+   npc:ChangeWeapon(UNIT_WEAPON_CHANGE_SECOND)
+   npc:SetAttackOnOff(true)
+   local dir = UNIT_MOVE_DIR_BACKWARD
+   local adir = nil
+   if RandomValue(2) == 1 then
+      dir = UNIT_MOVE_DIR_LEFT
+      adir = UNIT_MOVE_DIR_RIGHT
+   else
+      dir = UNIT_MOVE_DIR_RIGHT
+      adir = UNIT_MOVE_DIR_LEFT
+   end
+   --local pos = npc:GetTargetAreaPos(npc:GetAttackTarget(), dir, 0)
+   npc:SetMoveTargetPos(DocumentFind(npc:GetAttackTarget()):GetPos(), adir)
+   -- npc:SetBoostGauge(5000)
+   npc:SetMoveType(UNIT_MOVE_EVENT_DASH)
+   npc:SetAttackOnOff(true)
+   npc:SetEventTime()
+   --npc:InitAccDamage()
+end
+
+AIStep_Player_AI2_MovingAttack_Update = function(npc)
+   --local T = npc:RangedAttackTest(npc:GetAttackTarget())
+  -- local M = npc:MeleeAttackTest(npc:GetAttackTarget())
+   if npc:GetEventTime(2) == true then
+      npc:MoveStop()
+      ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_ATTACK)
+   else
+      -- if npc:CheckAccDamage(1000) == true then
+         -- npc:InitAccDamage()
+         -- ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_RETREATATTACK)
+      -- else
+         if CheckObejctAlive(npc:GetAttackTarget()) == false then
+            ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+            print("\197\184\176\217\198\196\177\171")
+         else
+            if npc:CheckInAttackLength(npc:GetAttackTarget()) == false then
+               npc:SetMoveTargetPos(DocumentFind(npc:GetAttackTarget()):GetPos())
+               ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_MOVE)
+               print("\192\175\180\214\192\187 \195\223\176\221")
+            end
+         end
+      -- end
+   end
+end
+
+AIStep_Player_AI2_MovingAttack_Release = function(npc)
+   npc:SetAttackOnOff(false)
+end
+
+AIStep_Player_AI2_JumpAttack_Init = function(npc)
+   local TargetID = npc:GetAttackTarget()
+   npc:ClearActEvent()
+   npc:SetAttackTarget(TargetID)
+   -- npc:SetBoostGauge(5000)
+   npc:SetMoveType(UNIT_MOVE_EVENT_DASH)
+   -- npc:InitAccDamage()
+   npc:SetJumpTime(1)
+   npc:ChangeWeapon(UNIT_WEAPON_CHANGE_SECOND)
+   npc:SetAttackOnOff(true)
+   -- npc:ShakeMoveOnOff(true)
+   npc:SetEventTime()
+end
+
+AIStep_Player_AI2_JumpAttack_Update = function(npc)
+   if npc:GetEventTime(4) == true then
+      ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+   else
+      if npc:CheckInAttackLength(npc:GetAttackTarget()) == CheckObejctAlive(npc:GetAttackTarget()) == false then
+         ChangeNpcAI_Player_AI2_Step(npc, _ACT_Player_AI2_NONE)
+         print("AIGF01_CheckObejctAlive(npc:GetAttackTarget()) == false")
+         print(npc:GetAttackTarget())
+      end
+   end
+end
+
+AIStep_Player_AI2_JumpAttack_Release = function(npc)
+   npc:SetAttackOnOff(false)
+   -- npc:ShakeMoveOnOff(false)
+end
+
+

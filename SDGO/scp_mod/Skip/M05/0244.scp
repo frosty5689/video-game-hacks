@@ -1,0 +1,36 @@
+Mission005_Clear_LuaInit = function(GameMode)
+   g_GameMode_MM005_Clear = {}
+   g_GameMode_MM005_Clear.Init = {}
+   g_GameMode_MM005_Clear.Update = {}
+   g_GameMode_MM005_Clear.Release = {}
+   g_nNowGameModeStep = 0
+   _GAMEMODE_MM005_CLEAR_Redy = GameMode:AddStepNum()
+   _GAMEMODE_MM005_CLEAR_010 = GameMode:AddStepNum()
+   _GAMEMODE_MM005_CLEAR_020 = GameMode:AddStepNum()
+   _GAMEMODE_MM005_CLEAR_030 = GameMode:AddStepNum()
+   g_GameMode_MM005_Clear.Init[_GAMEMODE_MM005_CLEAR_Redy] = GameMode_MM005_CLEAR_Ready_Init
+   g_GameMode_MM005_Clear.Update[_GAMEMODE_MM005_CLEAR_Redy] = GameMode_MM005_CLEAR_Ready_Update
+   g_GameMode_MM005_Clear.Release[_GAMEMODE_MM005_CLEAR_Redy] = GameMode_MM005_CLEAR_Ready_Release
+   g_GameMode_MM005_Clear.Init[_GAMEMODE_MM005_CLEAR_010] = GameMode_MM005_Clear01_Init
+   g_GameMode_MM005_Clear.Update[_GAMEMODE_MM005_CLEAR_010] = GameMode_MM005_Clear01_Update
+   g_GameMode_MM005_Clear.Release[_GAMEMODE_MM005_CLEAR_010] = GameMode_MM005_Clear01_Release
+   g_GameMode_MM005_Clear.Init[_GAMEMODE_MM005_CLEAR_020] = GameMode_MM005_Clear02_Init
+   g_GameMode_MM005_Clear.Update[_GAMEMODE_MM005_CLEAR_020] = GameMode_MM005_Clear02_Update
+   g_GameMode_MM005_Clear.Release[_GAMEMODE_MM005_CLEAR_020] = GameMode_MM005_Clear02_Release
+   g_GameMode_MM005_Clear.Init[_GAMEMODE_MM005_CLEAR_030] = GameMode_MM005_Clear03_Init
+   g_GameMode_MM005_Clear.Update[_GAMEMODE_MM005_CLEAR_030] = GameMode_MM005_Clear03_Update
+   g_GameMode_MM005_Clear.Release[_GAMEMODE_MM005_CLEAR_030] = GameMode_MM005_Clear03_Release
+   t_npc1 = nil
+   t_npc1 = GameMode:CreateNpc(89001, vector3(0, 587, 8348), OBJECT_TEAM_BLUE, vector3(-1, 0, 0))
+   t_npc1:ReMoveObject()
+   ChangeGameModeStep(GameMode, _GAMEMODE_MM005_CLEAR_030, g_GameMode_MM005_Clear)
+   return 1
+end
+
+GameMode_MM005_Clear03_Update = function(GameMode)
+   --t_npc1:ReMoveObject()
+   GameMode:DemoEnd()
+   GameMode:ChangeGameCamera()
+   return 456
+end
+

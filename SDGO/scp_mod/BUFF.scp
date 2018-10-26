@@ -1,0 +1,78 @@
+GAF_Skill_Buff = function()
+	dofileFS("AI_Config.txt")
+
+	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+			--  io.output(io.open("test1.txt", "a"))
+			  --for skillId=Start_ID,End_ID do
+
+		  -- io.write(skillId, "\n")
+
+		--t_LocalPlayer:ActiveSkillByScript(skillId, SKILL_ON)
+		 		
+	--end
+	 --io.close()	
+	--t_LocalPlayer:SetTerrainRectOnOff(false)
+	if Player_Buff == 1 then
+--{3473002, 3473003, 3473004, 3473007, 3473008, 3473009, 3473012, 3473013, 3473016, 3473017, 3473018, 3473019, 3473020, 3473022, 3473024, 3473027,
+	--		3558016,3220026, 3220025, 3220020, 3220016, 3220002, 3220003, 3558002, 3558001,3220007, 3220010,
+	--		3220011, 3220012, 3220015, 3220022, 3220023, 3220024, 3220025,
+	--		3220008, 3220020, 3473001, 3473006, 3473011,3220019}
+		--for skillId=3473040,3474000 do
+		--io.output(io.open("test6.txt", "a"))
+		for i,skillId in ipairs(Player_Buff_List) do
+			--io.write(skillId, "\n")
+			--io.close()
+			t_LocalPlayer:ActiveSkillByScript(skillId, SKILL_ON)
+		end
+	end
+	
+	if Player_Unlimited_Boost == 1 then
+		t_LocalPlayer:SetManualBuff(UNIT_FEATURE_BOOST_INFINITE)
+	end
+	if Player_Unlimited_Ammo == 1 then
+		t_LocalPlayer:SetManualBuff(UNIT_FEATURE_BULLET_INFINITE)
+	end
+	if Player_Snipe_Critical == 1 then
+		t_LocalPlayer:SetManualBuff(UNIT_FEATURE_SNIPING_CRITICAL)
+	end
+
+	return
+end
+
+
+function tableName(tbl)
+assert(type(tbl)=="table", "tbl must be a table")
+    for n, v in getfenv() do
+        if v == tbl then
+            return n
+        end
+    end
+    return nil
+end
+
+
+GAF_ChangeNpcAIStep = function(table, npc, t_nStep)
+
+	local tDocument = GetDocument()
+	local t_OldStep = npc:GetLuaStep()
+	table.Release[npc:GetLuaStep()](npc)
+	local t_nChangeStep = npc:ChangeStep(t_nStep)
+	table.Init[t_nChangeStep](npc)
+	--ScriptLog(tableName(table))
+ --  npc:SetTerrainRect(500,0,500,0)
+ --  npc:SetTerrainRectOnOff(true)
+	if npc:GetID() > 4 then
+		if NPC_Debuff1 == 1 and NPC_DebuffOnOff == 1 then
+	--npc:ActiveSkillByScript(3558002, SKILL_ON)
+			npc:ActiveSkillByScript(3220039, SKILL_ON)
+	end
+		if NPC_Debuff2 == 1 and NPC_DebuffOnOff == 1 then
+			npc:ActiveSkillByScript(3220041, SKILL_ON)
+		end
+	end
+
+	pcall(GAF_Skill_Buff)
+
+	return true
+end

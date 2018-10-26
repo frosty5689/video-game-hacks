@@ -1,0 +1,7 @@
+function dofileFS (filename)
+	local f = assert(loadfile(filename))
+	return f()
+end
+
+pcall(dofileFS, "scp_mod\\Init.scp")
+

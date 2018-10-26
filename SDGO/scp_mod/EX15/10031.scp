@@ -1,0 +1,31 @@
+MM016_Boss002_Update = function(npc)
+   g_NpcAI_MM016_Boss002_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_MM016_Boss002_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_MM016_Boss002_Step, npc, t_nStep)
+   return true
+end
+
+MM016_Boss002_LuaInit = function()
+   _ACT_MM016_Boss002_INITIALZATION = 0
+   g_NpcAI_MM016_Boss002_Step = {}
+   g_NpcAI_MM016_Boss002_Step.Init = {}
+   g_NpcAI_MM016_Boss002_Step.Update = {}
+   g_NpcAI_MM016_Boss002_Step.Release = {}
+   g_NpcAI_MM016_Boss002_Step.Init[_ACT_MM016_Boss002_INITIALZATION] = AIStep_MM016_Boss002_Init_Init
+   g_NpcAI_MM016_Boss002_Step.Update[_ACT_MM016_Boss002_INITIALZATION] = AIStep_MM016_Boss002_Init_Update
+   g_NpcAI_MM016_Boss002_Step.Release[_ACT_MM016_Boss002_INITIALZATION] = AIStep_MM016_Boss002_Init_Release
+   return 1
+end
+
+AIStep_MM016_Boss002_Init_Init = function(npc)
+end
+
+AIStep_MM016_Boss002_Init_Update = function(npc)
+   npc:SetLuaFunctionName("VAC005_Boss")
+end
+
+AIStep_MM016_Boss002_Init_Release = function(npc)
+end

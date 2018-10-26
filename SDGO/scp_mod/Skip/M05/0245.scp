@@ -1,0 +1,49 @@
+Mission005_Movie01_LuaInit = function(GameMode)
+   g_GameMode_MM005_Movie01 = {}
+   g_GameMode_MM005_Movie01.Init = {}
+   g_GameMode_MM005_Movie01.Update = {}
+   g_GameMode_MM005_Movie01.Release = {}
+   g_nNowGameModeStep = 0
+   _GameMode_MM005_MOVIE01_Redy = GameMode:AddStepNum()
+   _GameMode_MM005_MOVIE01_010 = GameMode:AddStepNum()
+   _GameMode_MM005_MOVIE01_020 = GameMode:AddStepNum()
+   _GameMode_MM005_MOVIE01_030 = GameMode:AddStepNum()
+   g_GameMode_MM005_Movie01.Init[_GameMode_MM005_MOVIE01_Redy] = GameMode_MM005_MOVIE01_Ready_Init
+   g_GameMode_MM005_Movie01.Update[_GameMode_MM005_MOVIE01_Redy] = GameMode_MM005_MOVIE01_Ready_Update
+   g_GameMode_MM005_Movie01.Release[_GameMode_MM005_MOVIE01_Redy] = GameMode_MM005_MOVIE01_Ready_Release
+   g_GameMode_MM005_Movie01.Init[_GameMode_MM005_MOVIE01_010] = GameMode_MM005_MOVIE01_010_Init
+   g_GameMode_MM005_Movie01.Update[_GameMode_MM005_MOVIE01_010] = GameMode_MM005_MOVIE01_010_Update
+   g_GameMode_MM005_Movie01.Release[_GameMode_MM005_MOVIE01_010] = GameMode_MM005_MOVIE01_010_Release
+   g_GameMode_MM005_Movie01.Init[_GameMode_MM005_MOVIE01_020] = GameMode_MM005_MOVIE01_020_Init
+   g_GameMode_MM005_Movie01.Update[_GameMode_MM005_MOVIE01_020] = GameMode_MM005_MOVIE01_020_Update
+   g_GameMode_MM005_Movie01.Release[_GameMode_MM005_MOVIE01_020] = GameMode_MM005_MOVIE01_020_Release
+   g_GameMode_MM005_Movie01.Init[_GameMode_MM005_MOVIE01_030] = GameMode_MM005_MOVIE01_030_Init
+   g_GameMode_MM005_Movie01.Update[_GameMode_MM005_MOVIE01_030] = GameMode_MM005_MOVIE01_030_Update
+   g_GameMode_MM005_Movie01.Release[_GameMode_MM005_MOVIE01_030] = GameMode_MM005_MOVIE01_030_Release
+   t_DummyPlayer = {}
+   t_PlayerID = {}
+   
+   for i = 1, GetNumPlayer() do
+      t_DummyPlayer[i] = CreateDummyPlayer(i)
+      --t_PlayerID[i] = GetPlayer(i):GetID()
+      --HideObject(t_PlayerID[i])
+   end
+   
+   for i = 1, GetNumPlayer() do
+      t_DummyPlayer[i]:ReMoveObject()
+      --UnHideObject(t_PlayerID[i])
+   end
+   
+   ChangeGameModeStep(GameMode, _GameMode_MM005_MOVIE01_030, g_GameMode_MM005_Movie01)
+   return 1
+end
+
+GameMode_MM005_MOVIE01_030_Update = function(GameMode)
+   -- for i = 1, GetNumPlayer() do
+      -- t_DummyPlayer[i]:ReMoveObject()
+      -- UnHideObject(t_PlayerID[i])
+   -- end
+   GameMode:DemoEnd()
+   GameMode:ChangeGameCamera()
+   return 456
+end

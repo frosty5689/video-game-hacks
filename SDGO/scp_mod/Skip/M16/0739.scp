@@ -1,0 +1,26 @@
+Mission016_Clear_LuaInit = function(GameMode)
+   g_GameMode_MM016_Clear = {}
+   g_GameMode_MM016_Clear.Init = {}
+   g_GameMode_MM016_Clear.Update = {}
+   g_GameMode_MM016_Clear.Release = {}
+   g_nNowGameModeStep = 0
+   _GameMode_MM016_Clear_Redy = GameMode:AddStepNum()
+   _GameMode_MM016_Clear_010 = GameMode:AddStepNum()
+   _GameMode_MM016_Clear_020 = GameMode:AddStepNum()
+   g_GameMode_MM016_Clear.Init[_GameMode_MM016_Clear_Redy] = GameMode_MM016_Clear_Ready_Init
+   g_GameMode_MM016_Clear.Update[_GameMode_MM016_Clear_Redy] = GameMode_MM016_Clear_Ready_Update
+   g_GameMode_MM016_Clear.Release[_GameMode_MM016_Clear_Redy] = GameMode_MM016_Clear_Ready_Release
+   g_GameMode_MM016_Clear.Init[_GameMode_MM016_Clear_010] = GameMode_MM016_Clear01_Init
+   g_GameMode_MM016_Clear.Update[_GameMode_MM016_Clear_010] = GameMode_MM016_Clear01_Update
+   g_GameMode_MM016_Clear.Release[_GameMode_MM016_Clear_010] = GameMode_MM016_Clear01_Release
+   g_GameMode_MM016_Clear.Init[_GameMode_MM016_Clear_020] = GameMode_MM016_Clear02_Init
+   g_GameMode_MM016_Clear.Update[_GameMode_MM016_Clear_020] = GameMode_MM016_Clear02_Update
+   g_GameMode_MM016_Clear.Release[_GameMode_MM016_Clear_020] = GameMode_MM016_Clear02_Release
+   t_npc1 = nil
+   -- t_npc1 = GameMode:CreateNpc(3248101, vector3(-1250, 1300, 4050), OBJECT_TEAM_BLUE, vector3(0, 0, -1))
+   -- t_npc1:SetLuaFunctionName()
+   -- t_npc1:SetRoadSearchType(0)
+  -- GameMode_MM016_Clear02_Update(GameMode)
+   ChangeGameModeStep(GameMode, _GameMode_MM016_Clear_020, g_GameMode_MM016_Clear)
+   return 1
+end

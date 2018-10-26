@@ -1,0 +1,31 @@
+MM015_Npc_004_Update = function(npc)
+   g_NpcAI_MM015_Npc_004_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_MM015_Npc_004_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_MM015_Npc_004_Step, npc, t_nStep)
+   return true
+end
+
+MM015_Npc_004_LuaInit = function()
+   _ACT_MM015_Npc_004_INITIALZATION = 0
+   g_NpcAI_MM015_Npc_004_Step = {}
+   g_NpcAI_MM015_Npc_004_Step.Init = {}
+   g_NpcAI_MM015_Npc_004_Step.Update = {}
+   g_NpcAI_MM015_Npc_004_Step.Release = {}
+   g_NpcAI_MM015_Npc_004_Step.Init[_ACT_MM015_Npc_004_INITIALZATION] = AIStep_MM015_Npc_004_Init_Init
+   g_NpcAI_MM015_Npc_004_Step.Update[_ACT_MM015_Npc_004_INITIALZATION] = AIStep_MM015_Npc_004_Init_Update
+   g_NpcAI_MM015_Npc_004_Step.Release[_ACT_MM015_Npc_004_INITIALZATION] = AIStep_MM015_Npc_004_Init_Release
+   return 1
+end
+
+AIStep_MM015_Npc_004_Init_Init = function(npc)
+end
+
+AIStep_MM015_Npc_004_Init_Update = function(npc)
+   npc:SetLuaFunctionName("VAC001_SmallMob")
+end
+
+AIStep_MM015_Npc_004_Init_Release = function(npc)
+end

@@ -1,0 +1,47 @@
+Mission005_Movie02_LuaInit = function(GameMode)
+   g_GameMode_MM005_Movie02 = {}
+   g_GameMode_MM005_Movie02.Init = {}
+   g_GameMode_MM005_Movie02.Update = {}
+   g_GameMode_MM005_Movie02.Release = {}
+   g_nNowGameModeStep = 0
+   _GameMode_MM005_MOVIE02_Redy = GameMode:AddStepNum()
+   _GameMode_MM005_MOVIE02_010 = GameMode:AddStepNum()
+   _GameMode_MM005_MOVIE02_020 = GameMode:AddStepNum()
+   g_GameMode_MM005_Movie02.Init[_GameMode_MM005_MOVIE02_Redy] = GameMode_MM005_MOVIE02_Ready_Init
+   g_GameMode_MM005_Movie02.Update[_GameMode_MM005_MOVIE02_Redy] = GameMode_MM005_MOVIE02_Ready_Update
+   g_GameMode_MM005_Movie02.Release[_GameMode_MM005_MOVIE02_Redy] = GameMode_MM005_MOVIE02_Ready_Release
+   g_GameMode_MM005_Movie02.Init[_GameMode_MM005_MOVIE02_010] = GameMode_MM005_MOVIE02_010_Init
+   g_GameMode_MM005_Movie02.Update[_GameMode_MM005_MOVIE02_010] = GameMode_MM005_MOVIE02_010_Update
+   g_GameMode_MM005_Movie02.Release[_GameMode_MM005_MOVIE02_010] = GameMode_MM005_MOVIE02_010_Release
+   g_GameMode_MM005_Movie02.Init[_GameMode_MM005_MOVIE02_020] = GameMode_MM005_MOVIE02_020_Init
+   g_GameMode_MM005_Movie02.Update[_GameMode_MM005_MOVIE02_020] = GameMode_MM005_MOVIE02_020_Update
+   g_GameMode_MM005_Movie02.Release[_GameMode_MM005_MOVIE02_020] = GameMode_MM005_MOVIE02_020_Release
+   t_DummyPlayer = {}
+   t_PlayerID = {}
+   
+   for i = 1, GetNumPlayer() do
+      t_DummyPlayer[i] = CreateDummyPlayer(i)
+      --t_PlayerID[i] = GetPlayer(i):GetID()
+      --HideObject(t_PlayerID[i])
+   end
+   
+   for i = 1, GetNumPlayer() do
+      t_DummyPlayer[i]:ReMoveObject()
+      --UnHideObject(t_PlayerID[i])
+   end
+   
+   ChangeGameModeStep(GameMode, _GameMode_MM005_MOVIE02_020, g_GameMode_MM005_Movie02)
+   return 1
+end
+
+GameMode_MM005_MOVIE02_020_Update = function(GameMode)
+   -- for i = 1, GetNumPlayer() do
+      -- t_DummyPlayer[i]:ReMoveObject()
+      -- UnHideObject(t_PlayerID[i])
+   -- end
+   GameMode:DemoEnd()
+   GameMode:ChangeGameCamera()
+   return 456
+end
+
+

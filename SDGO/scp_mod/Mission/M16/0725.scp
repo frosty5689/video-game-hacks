@@ -1,0 +1,36 @@
+MM015_Npc_Mine_Update = function(npc)
+   g_NpcAI_MM015_Npc_Mine_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_MM015_Npc_Mine_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_MM015_Npc_Mine_Step, npc, t_nStep)
+   return true
+end
+
+MM015_Npc_Mine_LuaInit = function()
+   _ACT_MM015_Npc_Mine_INITIALZATION = 0
+   g_NpcAI_MM015_Npc_Mine_Step = {}
+   g_NpcAI_MM015_Npc_Mine_Step.Init = {}
+   g_NpcAI_MM015_Npc_Mine_Step.Update = {}
+   g_NpcAI_MM015_Npc_Mine_Step.Release = {}
+   g_NpcAI_MM015_Npc_Mine_Step.Init[_ACT_MM015_Npc_Mine_INITIALZATION] = AIStep_MM015_Npc_Mine_Init_Init
+   g_NpcAI_MM015_Npc_Mine_Step.Update[_ACT_MM015_Npc_Mine_INITIALZATION] = AIStep_MM015_Npc_Mine_Init_Update
+   g_NpcAI_MM015_Npc_Mine_Step.Release[_ACT_MM015_Npc_Mine_INITIALZATION] = AIStep_MM015_Npc_Mine_Init_Release
+   npc:ReMoveObject()
+   return 1
+end
+
+AIStep_MM015_Npc_Mine_Init_Init = function(npc)
+end
+
+AIStep_MM015_Npc_Mine_Init_Update = function(npc)
+		npc:SetRoadSearchType(0)
+   npc:ReMoveObject()
+   --npc:SetLuaFunctionName("VAC004_UselessMob")
+end
+
+AIStep_MM015_Npc_Mine_Init_Release = function(npc)
+end
+
+

@@ -1,0 +1,110 @@
+GAF_UNLIMITED = function()
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   local tDocument = GetDocument()
+   local t_LocalPlayer = CastingUnit(tDocument:GetLocalPlayer())
+   t_npc1 = nil
+   --for i = 1, GetNumPlayer() do
+      if(Player_Unlimited_Boost == 1) then
+		t_LocalPlayer:SetManualBuff(UNIT_FEATURE_BOOST_INFINITE)
+	  end
+	  if(Player_Unlimited_Ammo == 1) then
+		t_LocalPlayer:SetManualBuff(UNIT_FEATURE_BULLET_INFINITE)
+	  end
+	  if(Player_Snipe_Critical == 1) then
+		t_LocalPlayer:SetManualBuff(UNIT_FEATURE_SNIPING_CRITICAL)
+	  end
+   --end
+end
+
+	
+GAF_PLAYER_SCRIPT = function()
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   
+
+  
+   local tDocument = GetDocument()
+
+   local t_LocalPlayer = CastingUnit(tDocument:GetLocalPlayer())
+   if AI_Enable == 1 then
+     -- t_LocalPlayer:SetLuaFunctionName("PLAYER_AI2")
+	end
+	
+   for i = 1, GetNumPlayer() do
+	  
+		if GetPlayer(i):GetID() ~= t_LocalPlayer:GetID() then
+
+		
+			if Player_Script == 1 then
+				if true == CheckArrvial_Not_Y(GetPlayer(i):GetID(), t_LocalPlayer:GetPos(), Player_Detect_Range) then
+					GetPlayer(i):SetLuaFunctionName("BUFF_Npc001")
+				else
+					if GetNumPlayer(OBJECT_TEAM_BLUE) == 0 then
+						GetPlayer(i):SetLuaFunctionName("BUFF_Npc001")
+					end
+				end
+			end
+
+		else
+			if Player_Unlimited_Boost == 1 then
+				t_LocalPlayer:SetManualBuff(UNIT_FEATURE_BOOST_INFINITE)
+			end
+			if Player_Unlimited_Ammo == 1 then
+				t_LocalPlayer:SetManualBuff(UNIT_FEATURE_BULLET_INFINITE)
+			end
+			if Player_Snipe_Critical == 1 then
+				t_LocalPlayer:SetManualBuff(UNIT_FEATURE_SNIPING_CRITICAL)
+			end
+		end
+   end
+
+
+end
+
+BattleDestroyGridInit = function(interface)
+   local dwInitTime = GettimeGetTime()
+   local dwDelayTime = 0
+   local pEventState = GetEventState()
+   local pEventElement = GetEventElement()
+   local pGameEvent = GetGameEvent()
+   pEventState:SetStart(vector3(-256, 384, 0))
+   pEventState:SetMove(vector3(256, 384, 0), vector3(120, 0, 0), vector3(-8, 0, 0))
+   pEventElement:PushEventState(pEventState)
+   pEventElement:SetTexture(interface.m_Dead)
+   pEventElement:SetTexturePosition(0, 0, 512, 768)
+   pGameEvent:PushEvent(pEventElement)
+   pEventState = GetEventState()
+   pEventState:SetStart(vector3(1024 + 256, 384, 0))
+   pEventState:SetMove(vector3(767.5, 384, 0), vector3(-120, 0, 0), vector3(8, 0, 0))
+   pEventState:SetRotate(180, 180, 0)
+   pEventElement = GetEventElement()
+   pEventElement:PushEventState(pEventState)
+   pEventElement:SetTexture(interface.m_Dead)
+   pEventElement:SetTexturePosition(0, 0, 512, 768)
+   pGameEvent:PushEvent(pEventElement)
+   dwDelayTime = dwDelayTime + 1500
+   pEventState = GetEventState()
+   pEventState:SetDelayInitTime(dwInitTime)
+   pEventState:SetDelayTime(dwDelayTime)
+   pEventState:SetStart(vector3(515, 500, 0))
+   pEventElement = GetEventElement()
+   pEventElement:PushEventState(pEventState)
+   pEventElement:SetTexture(interface.m_Dead)
+   pEventElement:SetTexturePosition(516, 329, 449, 24)
+   pGameEvent:PushEvent(pEventElement)
+   pEventState = GetEventState()
+   pEventState:SetDelayInitTime(dwInitTime)
+   pEventState:SetDelayTime(dwDelayTime)
+   pEventState:SetStart(vector3(515, 223, 0))
+   pEventElement = GetEventElement()
+   pEventElement:PushEventState(pEventState)
+   pEventElement:SetTexture(interface.m_Dead)
+   pEventElement:SetTexturePosition(524, 31, 376, 45)
+   pGameEvent:PushEvent(pEventElement)
+   dwDelayTime = dwDelayTime + 90
+   interface:AddEvent("GridDestroy", pGameEvent)
+
+   pcall(GAF_PLAYER_SCRIPT)
+   return 0
+end

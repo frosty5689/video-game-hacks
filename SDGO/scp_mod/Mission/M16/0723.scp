@@ -1,0 +1,56 @@
+MM015_Npc_Laoho5_Fly_Range_Update = function(npc)
+   g_NpcAI_MM015_Npc_Laoho5_Fly_Range_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_MM015_Npc_Laoho5_Fly_Range_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_MM015_Npc_Laoho5_Fly_Range_Step, npc, t_nStep)
+   return true
+end
+
+MM015_Npc_Laoho5_Fly_Range_LuaInit = function()
+   _ACT_MM015_Npc_Laoho5_Fly_Range_INITIALZATION = 0
+   _ACT_MM015_Npc_Laoho5_Fly_Range_NONE = 1
+   g_NpcAI_MM015_Npc_Laoho5_Fly_Range_Step = {}
+   g_NpcAI_MM015_Npc_Laoho5_Fly_Range_Step.Init = {}
+   g_NpcAI_MM015_Npc_Laoho5_Fly_Range_Step.Update = {}
+   g_NpcAI_MM015_Npc_Laoho5_Fly_Range_Step.Release = {}
+   g_NpcAI_MM015_Npc_Laoho5_Fly_Range_Step.Init[_ACT_MM015_Npc_Laoho5_Fly_Range_INITIALZATION] = AIStep_MM015_Npc_Laoho5_Fly_Range_Init_Init
+   g_NpcAI_MM015_Npc_Laoho5_Fly_Range_Step.Update[_ACT_MM015_Npc_Laoho5_Fly_Range_INITIALZATION] = AIStep_MM015_Npc_Laoho5_Fly_Range_Init_Update
+   g_NpcAI_MM015_Npc_Laoho5_Fly_Range_Step.Release[_ACT_MM015_Npc_Laoho5_Fly_Range_INITIALZATION] = AIStep_MM015_Npc_Laoho5_Fly_Range_Init_Release
+   g_NpcAI_MM015_Npc_Laoho5_Fly_Range_Step.Init[_ACT_MM015_Npc_Laoho5_Fly_Range_NONE] = AIStep_MM015_Npc_Laoho5_Fly_Range_None_Init
+   g_NpcAI_MM015_Npc_Laoho5_Fly_Range_Step.Update[_ACT_MM015_Npc_Laoho5_Fly_Range_NONE] = AIStep_MM015_Npc_Laoho5_Fly_Range_None_Update
+   g_NpcAI_MM015_Npc_Laoho5_Fly_Range_Step.Release[_ACT_MM015_Npc_Laoho5_Fly_Range_NONE] = AIStep_MM015_Npc_Laoho5_Fly_Range_None_Release
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   return 1
+end
+
+AIStep_MM015_Npc_Laoho5_Fly_Range_Init_Init = function(npc)
+npc:SetRotation_Y_Angle(180, 1)
+end
+
+AIStep_MM015_Npc_Laoho5_Fly_Range_Init_Update = function(npc)
+   ChangeNpcAI_MM015_Npc_Laoho5_Fly_Range_Step(npc, _ACT_MM015_Npc_Laoho5_Fly_Range_NONE)
+end
+
+AIStep_MM015_Npc_Laoho5_Fly_Range_Init_Release = function(npc)
+end
+
+
+AIStep_MM015_Npc_Laoho5_Fly_Range_None_Init = function(npc)
+   npc:SetAttackOnOff(false)
+   npc:SetAttackEndFlg(false)
+   npc:GetCommanderID()
+   npc:ClearActEvent()
+end
+
+AIStep_MM015_Npc_Laoho5_Fly_Range_None_Update = function(npc)
+			   if false == CheckArrvial_Not_Y(npc:GetID(), t_vacpos1, Range_Tolerance) then
+			   			         npc:SetRotation_Pos(TURN_ANGLE, TURN_TIMES)
+                     npc:SetNowPos(vector3(t_vacpos1.x+FIVE_LAOHO_X_DIFF,FIVE_LAOHO_Y,t_vacpos1.z+FIVE_LAOHO_Z_DIFF))
+			   end
+end
+
+AIStep_MM015_Npc_Laoho5_Fly_Range_None_Release = function(npc)
+end

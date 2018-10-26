@@ -1,0 +1,40 @@
+MM004_NpcTurret001_Update = function(npc)
+   g_NpcAI_MM004_TR001_Step.Update[npc:GetLuaStep()](npc)
+   return 123
+end
+
+ChangeNpcAI_MM004_TR001_Step = function(npc, t_nStep)
+   GAF_ChangeNpcAIStep(g_NpcAI_MM004_TR001_Step, npc, t_nStep)
+   return true
+end
+
+MM004_NpcTurret001_LuaInit = function()
+   _ACT_MM004_TR001_INITIALZATION = 0
+   -- _ACT_MM004_TR001_ATTACK = 1
+   -- _ACT_MM004_TR001_NONE = 2
+   g_NpcAI_MM004_TR001_Step = {}
+   g_NpcAI_MM004_TR001_Step.Init = {}
+   g_NpcAI_MM004_TR001_Step.Update = {}
+   g_NpcAI_MM004_TR001_Step.Release = {}
+   g_NpcAI_MM004_TR001_Step.Init[_ACT_MM004_TR001_INITIALZATION] = AIStep_MM004_TR001_Init_Init
+   g_NpcAI_MM004_TR001_Step.Update[_ACT_MM004_TR001_INITIALZATION] = AIStep_MM004_TR001_Init_Update
+   g_NpcAI_MM004_TR001_Step.Release[_ACT_MM004_TR001_INITIALZATION] = AIStep_MM004_TR001_Init_Release
+   -- g_NpcAI_MM004_TR001_Step.Init[_ACT_MM004_TR001_ATTACK] = AIStep_MM004_TR001_Attack_Init
+   -- g_NpcAI_MM004_TR001_Step.Update[_ACT_MM004_TR001_ATTACK] = AIStep_MM004_TR001_Attack_Update
+   -- g_NpcAI_MM004_TR001_Step.Release[_ACT_MM004_TR001_ATTACK] = AIStep_MM004_TR001_Attack_Release
+   -- g_NpcAI_MM004_TR001_Step.Init[_ACT_MM004_TR001_NONE] = AIStep_MM004_TR001_None_Init
+   -- g_NpcAI_MM004_TR001_Step.Update[_ACT_MM004_TR001_NONE] = AIStep_MM004_TR001_None_Update
+   -- g_NpcAI_MM004_TR001_Step.Release[_ACT_MM004_TR001_NONE] = AIStep_MM004_TR001_None_Release
+   return 1
+end
+
+AIStep_MM004_TR001_Init_Init = function(npc)
+end
+
+AIStep_MM004_TR001_Init_Update = function(npc)
+   -- ChangeNpcAI_MM004_TR001_Step(npc, _ACT_MM004_TR001_NONE)
+   npc:SetLuaFunctionName("VAC003_MediumMob")
+end
+
+AIStep_MM004_TR001_Init_Release = function(npc)
+end

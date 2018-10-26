@@ -1,0 +1,88 @@
+SingleMission002_Event01 = function(GameMode)
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   
+      	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+   
+   local xpos = 8425
+   for i = 1, GetNumPlayer() do
+      --GetPlayer(i):SetTerrainRect(-7849, -5601, -5351, -7596)
+      PlayerWarp(i, vector3(xpos, 0, -6200), vector3(0, 0, 1))
+      xpos = xpos - 500
+   end
+   if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   t_vacpos1 = t_LocalPlayer:GetPos()
+   t_orgpos1 = t_LocalPlayer:GetPos()
+   --t_buffnpc1 = GameMode:CreateNpc(3248001, vector3(7800, 0, -5495), OBJECT_TEAM_RED, vector3(1, 0, 0))
+   --t_buffnpc1:SetLuaFunctionName("BUFF_Npc001")
+   return 123
+end
+
+SingleMission002_Event02 = function(GameMode)
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   
+      	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+   
+   
+   local xpos = 94
+   for i = 1, GetNumPlayer() do
+      --GetPlayer(i):SetTerrainRect(-7846, 1397, -5359, -1089)
+      --PlayerWarp(i, vector3(-6586, 100, xpos), vector3(0, 0, 1))
+      xpos = xpos - 400
+   end
+   if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   --t_npc2 = GameMode:CreateNpc(3248001, vector3(xpos, 100, -5495), OBJECT_TEAM_RED, vector3(1, 0, 1))
+   --t_npc2 = SetLuaFunctionName("MM015_Npc_004")
+   return 123
+end
+
+SingleMission002_Event03 = function(GameMode)
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   
+      	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+   
+   local xpos = 9239
+   for i = 1, GetNumPlayer() do
+      --GetPlayer(i):SetTerrainRect(304, 4724, 10703, -8055)
+      --PlayerWarp(i, vector3(xpos, 100, 3804), vector3(-1, 0, 0))
+      xpos = xpos - 500
+   end
+   if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   --t_npc3 = GameMode:CreateNpc(3248001, vector3(xpos, 100, -5495), OBJECT_TEAM_RED, vector3(1, 0, 1))
+   --t_npc3 = SetLuaFunctionName("MM015_Npc_004")
+   return 123
+end
+
+SingleMission002_Event04 = function(GameMode)
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+   
+      	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+   
+   local xpos = 8074
+   for i = 1, GetNumPlayer() do
+      --GetPlayer(i):SetTerrainRect(7023, -4322, 9923, -8055)
+      --PlayerWarp(i, vector3(xpos, 100, -4972), vector3(0, 0, -1))
+      xpos = xpos - 500
+   end
+   if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   --t_npc4 = GameMode:CreateNpc(3248001, vector3(xpos, 100, -5495), OBJECT_TEAM_RED, vector3(1, 0, 1))
+   --t_npc4 = SetLuaFunctionName("MM015_Npc_004")
+   return 123
+end
+
+

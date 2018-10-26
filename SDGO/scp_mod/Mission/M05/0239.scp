@@ -1,0 +1,105 @@
+Mission005_Event01 = function(GameMode)
+
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+
+if M05_Mod == 1 then
+	pcall(M05ModOn)
+end
+   	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+
+
+	
+	local xpos = GetPlayer(1):GetPos().x
+   for i = 1, GetNumPlayer() do
+      --GetPlayer(i):SetTerrainRect(-973, -5108, 973, -10693)
+	  PlayerWarp(i, vector3(xpos, 0, GetPlayer(1):GetPos().z), vector3(0, 0, 1))
+	  xpos = xpos - 200
+   end
+   
+   if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   t_vacpos1 = t_LocalPlayer:GetPos()
+   t_orgpos1 = t_LocalPlayer:GetPos()
+   return 123
+end
+
+Mission005_Event02 = function(GameMode)
+   local file = assert(loadfile("AI_Config.txt"))
+   file()
+
+   	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+   local xpos = -1128
+   for i = 1, GetNumPlayer() do
+      PlayerWarp(i, vector3(xpos, 0, -4688.04), vector3(0, 0, 1))
+      xpos = xpos + 300
+      --GetPlayer(i):SetTerrainRect(-3847, 6253, 3847, 2042)
+   end
+   GameMode:HideBlock("whitebase")
+   
+   
+      if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   t_vacpos1 = t_LocalPlayer:GetPos()
+   t_orgpos1 = t_LocalPlayer:GetPos()
+   
+   return 123
+end
+
+Mission005_Event03 = function(GameMode)
+
+    local file = assert(loadfile("AI_Config.txt"))
+   file()
+
+   	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+
+   local xpos = -1128
+   for i = 1, GetNumPlayer() do
+      PlayerWarp(i, vector3(xpos, 0, -4688.04), vector3(0, 0, 1))
+      xpos = xpos + 300
+      --GetPlayer(i):SetTerrainRect(-3847, 6253, 3847, 2042)
+   end
+   
+         if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   t_vacpos1 = t_LocalPlayer:GetPos()
+   t_orgpos1 = t_LocalPlayer:GetPos()
+   
+   
+   return 123
+end
+
+Mission005_Event04 = function(GameMode)
+
+    local file = assert(loadfile("AI_Config.txt"))
+   file()
+
+   	local t_Document = GetDocument()
+	local t_LocalPlayer = CastingUnit(t_Document:GetLocalPlayer())
+
+
+   local xpos = -1128
+   for i = 1, GetNumPlayer() do
+      PlayerWarp(i, vector3(xpos, 0, -4688.04), vector3(0, 0, 1))
+      xpos = xpos + 300
+      --GetPlayer(i):SetTerrainRect(-3847, 6253, 3847, 2042)
+   end
+   GameMode:HideBlock("\183\163\181\229\184\182\197\169\176\199\185\176\184\246\195\188_1")
+   
+         if AI_Enable == 1 then
+      t_LocalPlayer:SetLuaFunctionName("PLAYER_AI1")
+   end
+   t_vacpos1 = t_LocalPlayer:GetPos()
+   t_orgpos1 = t_LocalPlayer:GetPos()
+   
+   
+   return 123
+end
+
+
